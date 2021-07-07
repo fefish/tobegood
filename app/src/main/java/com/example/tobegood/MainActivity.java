@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         button_first_choice_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_tologin = new Intent(MainActivity.this, mainpage.class);
+                Intent intent_tologin = new Intent(MainActivity.this, register.class);
                 startActivity(intent_tologin);
             }
         });

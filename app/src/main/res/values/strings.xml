@@ -14,6 +14,14 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="id">id</string>
-    <string name="name">name</string>>
-
+    <string name="name">name</string>
+    <string name="password">password</string>
+    <string name="sex">sex</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="vegan">vegan</string>
+    <string name="height">height</string>
+    <string name="weight">weight</string>
 </resources>
