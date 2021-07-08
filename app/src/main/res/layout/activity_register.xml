@@ -216,13 +216,50 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Edit_register_height" />
 
+    <TextView
+        android:id="@+id/Text_register_eatdisorder"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:text="@string/sex"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/RadioGroup_register_eatdisorder"
+        app:layout_constraintTop_toBottomOf="@id/Text_register_weight" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup_register_eatdisorder"
+        android:layout_height="40dp"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="70"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toRightOf="@id/Text_register_eatdisorder"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Edit_register_weight"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/Radiobutton_register_eatdisorder"
+            android:text="@string/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+
+        <RadioButton
+            android:id="@+id/Radiobutton_register_noeatdisorder"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/no" />
+
+    </RadioGroup>
+
     <Button
         android:id="@+id/Button_register_register"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Edit_register_weight"
+        app:layout_constraintTop_toBottomOf="@id/Text_register_eatdisorder"
         android:text="@string/register"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

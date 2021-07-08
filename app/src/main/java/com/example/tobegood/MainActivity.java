@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         button_first_choice_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toregister = new Intent(MainActivity.this, mainpage.class);
+                Intent intent_toregister = new Intent(MainActivity.this, register.class);
                 startActivity(intent_toregister);
             }
         });

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.tobegood.Dao.UserDao;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 public class register extends AppCompatActivity  {
     private boolean msex = false;
     private boolean mvegan = true;
+    private boolean meatdisorder = true;
     /**
     final String midstr = null;
     final String mnamestr = null;
@@ -41,16 +43,13 @@ public class register extends AppCompatActivity  {
         EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
         RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
-
+        RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
 
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "默认Toast样式",
-                        Toast.LENGTH_SHORT).show();
 
                 //button_register_register.setOnClickListener(this);
-                /**
                 radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkId) {
@@ -75,8 +74,18 @@ public class register extends AppCompatActivity  {
                                 break;
                             default:
                                 break; }}});
-                 */
-
+                radioGroup_register_eatdisorder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkId) {
+                        switch (checkId){
+                            case R.id.Radiobutton_register_eatdisorder:
+                                meatdisorder = true;
+                                break;
+                            case R.id.Radiobutton_register_noeatdisorder:
+                                meatdisorder = false;
+                                break;
+                            default:
+                                break; }}});
                 //DatabaseHelper helper = DatabaseHelper.getInstance();
                 UserDao userDao= new UserDao(register.this);
                 User user = new User();
@@ -97,14 +106,14 @@ public class register extends AppCompatActivity  {
                 user.setWeight(mweight);
                 user.setSex(msex);
                 user.setVegan(mvegan);
+                user.setEatdisorder(meatdisorder);
                 userDao.add(user);
+
                 userDao.listall();
+                Toast.makeText(getApplicationContext(),user.toString(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
-        /**
-         * 初始化数据库连接
-         */
-
     }
 }
 /**
