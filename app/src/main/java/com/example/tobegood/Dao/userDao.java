@@ -1,6 +1,7 @@
 package com.example.tobegood.Dao;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.tobegood.DatabaseHelper;
 import com.example.tobegood.bean.user;
@@ -8,6 +9,7 @@ import com.example.tobegood.bean.user;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+
 
 
 public class userDao {
@@ -18,7 +20,7 @@ public class userDao {
     //dao类
     private DatabaseHelper helper;
 
-    public userDao(Context mContext){
+    public userDao(View.OnClickListener mContext){
         this.mContext = mContext;
         //创建数据库
         helper = DatabaseHelper.getInstance(mContext);
