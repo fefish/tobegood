@@ -8,7 +8,7 @@ import java.util.Objects;
 //配置表名
 @DatabaseTable(tableName = "user_info")
 public class User {
-    @DatabaseField(generatedId = true,id = true)
+    @DatabaseField(id = true)
     private int id;
     //用户id
     @DatabaseField(columnName = "name")
@@ -52,28 +52,27 @@ public class User {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
-   public String getName(){
+    public String getName(){
         return name;
    }
 
-   public void setName(String name) {
+    public void setName(String name) {
        this.name = name;
    }
 
-   public String getPassword(){
+    public String getPassword(){
         return password;
    }
 
-   public void setPassword(String password){
+    public void setPassword(String password){
         this.password = password;
    }
 
-   public boolean isSex(){
+    public boolean isSex(){
         return sex;
    }
 

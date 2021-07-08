@@ -25,6 +25,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     //存放dao，效果类似于只要有了指定的String，就能找到对应的Dao。
     private Map<String, Dao> daos = new HashMap<String, Dao>();
 
+    private Dao<User, Integer> userDao;
+
     //构造函数，private这样该类就不会被实例化
     private DatabaseHelper(Context context){
         super(context, TABLE_NAME, null, 1);
@@ -94,7 +96,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     //获得数据库的访问对象
-    /**
+
     public synchronized Dao getDao(Class clazz) throws SQLException{
         Dao dao = null;
         String className = clazz.getCanonicalName();
@@ -107,6 +109,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             daos.put(className,dao);
         }
         return dao;
+    }
+
+
+    public Dao<User, Integer> getUserDao() throws SQLException
+    {
+        if (userDao == null)
+        {
+            userDao = getDao(User.class);
+        }
+        return userDao;
     }
 
     /**
