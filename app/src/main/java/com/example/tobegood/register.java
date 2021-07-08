@@ -2,24 +2,30 @@ package com.example.tobegood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import android.widget.RadioButton;
-
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.view.View.OnClickListener;
-import android.widget.TextView.OnEditorActionListener;
-import com.example.tobegood.Dao.userDao;
-import com.example.tobegood.bean.user;
+
+import com.example.tobegood.Dao.UserDao;
+import com.example.tobegood.bean.User;
 
 public class register extends AppCompatActivity  {
-
+    private boolean msex = false;
+    private boolean mvegan = true;
+    String midstr;
+    String mnamestr;
+    String mpasswordstr;
+    String mheightstr;
+    String mweightstr;
+    Integer mid;
+    //Integer mname;
+    //Integer mpassword;
+    Integer mheight;
+    Integer mweight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +38,7 @@ public class register extends AppCompatActivity  {
         EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
         RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
-        String midstr = edit_register_id.getText().toString();
-        String mnamestr = edit_register_name.getText().toString();
-        String mpasswordstr = edit_register_password.getText().toString();
-        String mheightstr = edit_register_height.getText().toString();
-        String mweightstr = edit_register_weight.getText().toString();
-        Integer mid = Integer.parseInt(midstr);
-        //Integer mname = Integer.parseInt(mnamestr);
-        //Integer mpassword = Integer.parseInt(mpasswordstr);
-        Integer mheight = Integer.parseInt(mheightstr);
-        Integer mweight = Integer.parseInt(mweightstr);
-        //button_register_register.setOnClickListener(this);
-        boolean msex = false;
-        boolean mvegan = true;
+
         radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkId) {
@@ -72,8 +66,19 @@ public class register extends AppCompatActivity  {
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userDao muserDao= new userDao(this);
-                user muser = new user();
+                midstr = edit_register_id.getText().toString();
+                mnamestr = edit_register_name.getText().toString();
+                mpasswordstr = edit_register_password.getText().toString();
+                mheightstr = edit_register_height.getText().toString();
+                mweightstr = edit_register_weight.getText().toString();
+                mid = Integer.parseInt(midstr);
+                //Integer mname = Integer.parseInt(mnamestr);
+                //Integer mpassword = Integer.parseInt(mpasswordstr);
+                mheight = Integer.parseInt(mheightstr);
+                mweight = Integer.parseInt(mweightstr);
+                //button_register_register.setOnClickListener(this);
+                UserDao muserDao= new UserDao(register.this);
+                User muser = new User();
                 muser.setId(mid);
                 muser.setName(mnamestr);
                 muser.setPassword(mpasswordstr);
@@ -81,7 +86,9 @@ public class register extends AppCompatActivity  {
                 muser.setWeight(mweight);
                 muser.setSex(msex);
                 muser.setVegan(mvegan);
-                muserDao.adduser(muser); }
+                muserDao.add(muser);
+                muserDao.listall();
+            }
         });
     }
 }

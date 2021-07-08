@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.tobegood.Dao.UserDao;
+import com.example.tobegood.bean.User;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -30,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent_toregister);
             }
         });
+
+        //UserDao userDao= new UserDao(MainActivity.this);
+        //User user = new User();
+        //userDao.add(user);
+
+
+
 //      这里有一个问题，创建的早，那个intent_toregister要改成去注册页面。
     }
 }

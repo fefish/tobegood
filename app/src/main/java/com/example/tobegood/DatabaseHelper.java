@@ -10,11 +10,10 @@ import android.database.sqlite.SQLiteDatabase;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 //这个是不是得自己写？
-import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-import com.example.tobegood.bean.user;
+import com.example.tobegood.bean.User;
 //有别的表也写在这里
 
 //ORMlite需要有一个继承自OrmLiteSqliteOpenHelper的类，来完成数据的创建和升级
@@ -47,7 +46,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource){
         try{
-            TableUtils.createTable(connectionSource, user.class);
+            TableUtils.createTable(connectionSource, User.class);
             //如果有别的表，写在这里应该
         } catch (SQLException e){
             e.printStackTrace();
@@ -64,7 +63,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database,
                           ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
-            TableUtils.dropTable(connectionSource, user.class, true);
+            TableUtils.dropTable(connectionSource, User.class, true);
             //TableUtils.dropTable(connectionSource, Article.class, true);
             //TableUtils.dropTable(connectionSource, Student.class, true);
             onCreate(database, connectionSource);

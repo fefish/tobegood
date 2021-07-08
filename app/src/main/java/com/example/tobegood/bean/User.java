@@ -7,7 +7,7 @@ import java.util.Objects;
 
 //配置表名
 @DatabaseTable(tableName = "user_info")
-public class user {
+public class User {
     @DatabaseField(generatedId = true,id = true)
     private int id;
     //用户id
@@ -34,11 +34,11 @@ public class user {
     //是否需要饮食障碍帮助
 
     //空构造
-    public user(){
+    public User(){
     }
 
     //构造方法
-    public user(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder) {
+    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -116,8 +116,8 @@ public class user {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof user)) return false;
-        user user = (user) o;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
         return getId() == user.getId() &&
                 isSex() == user.isSex() &&
                 isVegan() == user.isVegan() &&
