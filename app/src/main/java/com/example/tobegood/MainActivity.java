@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import com.example.tobegood.Dao.UserDao;
-import com.example.tobegood.bean.User;
-
+//包名小写，类名大驼峰命名法，接口大驼峰命名法，方法小驼峰命名法，变量小驼峰命名法
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         button_first_choice_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_tologin = new Intent(MainActivity.this, register.class);
+                Intent intent_tologin = new Intent(MainActivity.this, Register.class);
                 startActivity(intent_tologin);
             }
         });
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         button_first_choice_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toregister = new Intent(MainActivity.this, register.class);
+                Intent intent_toregister = new Intent(MainActivity.this, Register.class);
                 startActivity(intent_toregister);
             }
         });

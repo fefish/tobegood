@@ -8,14 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.tobegood.Dao.UserDao;
+import com.example.tobegood.dao.UserDao;
 import com.example.tobegood.bean.User;
 import android.widget.Toast;
 
-public class register extends AppCompatActivity  {
+public class Register extends AppCompatActivity  {
     private boolean msex = false;
     private boolean mvegan = true;
     private boolean meatdisorder = true;
@@ -87,7 +86,7 @@ public class register extends AppCompatActivity  {
                             default:
                                 break; }}});
                 //DatabaseHelper helper = DatabaseHelper.getInstance();
-                UserDao userDao= new UserDao(register.this);
+                UserDao userDao= new UserDao(Register.this);
                 User user = new User();
                 final String midstr = edit_register_id.getText().toString();
                 final String mnamestr = edit_register_name.getText().toString();
@@ -108,9 +107,8 @@ public class register extends AppCompatActivity  {
                 user.setVegan(mvegan);
                 user.setEatdisorder(meatdisorder);
                 userDao.add(user);
-
                 userDao.listall();
-                Toast.makeText(getApplicationContext(),user.toString(),
+                Toast.makeText(getApplicationContext(),"register successful! Your information is"+user.toString(),
                         Toast.LENGTH_SHORT).show();
             }
         });

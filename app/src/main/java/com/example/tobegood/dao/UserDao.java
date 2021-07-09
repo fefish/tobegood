@@ -1,4 +1,4 @@
-package com.example.tobegood.Dao;
+package com.example.tobegood.dao;
 
 import android.content.Context;
 
