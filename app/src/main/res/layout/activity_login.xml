@@ -61,7 +61,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/Edit_login_password"
         app:layout_constraintTop_toBottomOf="@id/Text_login_id" />
-1
+
     <EditText
         android:id="@+id/Edit_login_password"
         android:layout_width="0dp"

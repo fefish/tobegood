@@ -24,4 +24,7 @@
     <string name="vegan">vegan</string>
     <string name="height">height</string>
     <string name="weight">weight</string>
+    <string name="Recipe_One">recipe1</string>
+    <string name="Recipe_Two">recipe2</string>
+    <string name="Recipe_Three">recipe3</string>
 </resources>

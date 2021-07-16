@@ -2,6 +2,7 @@ package com.example.tobegood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -110,6 +111,8 @@ public class Register extends AppCompatActivity  {
                 userDao.listall();
                 Toast.makeText(getApplicationContext(),"register successful! Your information is"+user.toString(),
                         Toast.LENGTH_SHORT).show();
+                Intent intent_toMainPage = new Intent(Register.this, MainPage.class);
+                startActivity(intent_toMainPage);
             }
         });
     }
