@@ -63,5 +63,16 @@ public class UserDao {
         }
         return null;
     }
+    //
+
+    public User getUserById(int id){
+        User user = null;
+        try {
+            user = userDao.queryForId(id);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return user;
+    }
 
 }
