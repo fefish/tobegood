@@ -18,6 +18,9 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import com.example.tobegood.bean.User;
+import com.example.tobegood.bean.EatTable;
+import com.example.tobegood.bean.ExerciseTable;
+import com.example.tobegood.bean.UserPlan;
 //有别的表也写在这里
 
 //ORMlite需要有一个继承自OrmLiteSqliteOpenHelper的类，来完成数据的创建和升级
