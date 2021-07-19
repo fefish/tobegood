@@ -27,4 +27,6 @@
     <string name="Recipe_One">recipe1</string>
     <string name="Recipe_Two">recipe2</string>
     <string name="Recipe_Three">recipe3</string>
+    <string name="detail">detail</string>
+    <string name="complete">complete</string>
 </resources>
