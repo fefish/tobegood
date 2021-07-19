@@ -39,6 +39,7 @@
     <TextView
         android:id="@+id/Text_eat_exercise1_name"
         android:layout_height="wrap_content"
+
         android:text="@string/Exercise_One"
         android:layout_width="0dp"
         app:layout_constraintTop_toTopOf="@id/Image_eat_exercise1"

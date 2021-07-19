@@ -12,54 +12,53 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
-
-public class UserDao {
+public class UserPlanDao {
     //上下文
     private Context mContext;
     //主键查询
-    private Dao<User,Integer>userDao;
+    private Dao<UserPlan,Integer>userPlanDao;
     //dao类
     private DatabaseHelper helper;
 
-    public UserDao(Context context){
+    public UserPlanDao(Context context){
         this.mContext = context;
         //创建数据库
         helper = DatabaseHelper.getInstance(context);
         try{
             //操作dao
-            userDao = helper.getDao(User.class);
+            userPlanDao = helper.getDao(UserPlan.class);
         }catch(SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void add(User user){
+    public void add(UserPlan userPlan){
         try{
-            userDao.create(user);
+            userPlanDao.create(userPlan);
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void update(User user){
+    public void update(UserPlan userPlan){
         try{
-            userDao.update(user);
+            userPlanDao.update(userPlan);
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void delete(User user){
+    public void delete(UserPlan userPlan){
         try{
-            userDao.delete(user);
+            userPlanDao.delete(userPlan);
         }catch(SQLException e){
             e.printStackTrace();
         }
     }
 
-    public List<User> listall(){
+    public List<UserPlan> listall(){
         try{
-            return userDao.queryForAll();
+            return userPlanDao.queryForAll();
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -67,14 +66,14 @@ public class UserDao {
     }
     //
 
-    public User getUserById(int id){
-        User user = null;
+    public UserPlan getUserById(int id){
+        UserPlan userPlan = null;
         try {
-            user = userDao.queryForId(id);
+            userPlan = userPlanDao.queryForId(id);
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return user;
+        return userPlan;
     }
 
 }

@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Button button_first_choice_login = (Button) findViewById(R.id.button_first_choice_login);
         Button button_first_choice_register = (Button) findViewById(R.id.button_first_choice_register);

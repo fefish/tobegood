@@ -4,9 +4,9 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Objects;
-
+@DatabaseTable(tableName = "ExerciseTable_info")
 public class ExerciseTable {
-    @DatabaseField(columnName = "ExerciseName",generatedId = true)
+    @DatabaseField(columnName = "ExerciseId",generatedId = true)
     private int ExerciseId;
     //主键
 

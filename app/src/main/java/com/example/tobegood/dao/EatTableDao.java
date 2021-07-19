@@ -9,6 +9,8 @@ import com.example.tobegood.bean.EatTable;
 
 import com.example.tobegood.bean.User;
 import com.example.tobegood.bean.EatTable;
+import com.example.tobegood.bean.ExerciseTable;
+import com.example.tobegood.bean.UserPlan;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;

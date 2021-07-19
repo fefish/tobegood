@@ -7,6 +7,10 @@ import java.util.Map;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.tobegood.bean.EatTable;
+import com.example.tobegood.bean.ExerciseTable;
+import com.example.tobegood.bean.UserPlan;
+import com.example.tobegood.dao.EatTableDao;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 //这个是不是得自己写？
@@ -26,6 +30,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Map<String, Dao> daos = new HashMap<String, Dao>();
 
     private Dao<User, Integer> userDao;
+    private Dao<EatTable,Integer>eatTableDao;
+    private Dao<ExerciseTable,Integer>exerciseTableDao;
+    private Dao<UserPlan,Integer>userPlanDao;
 
     //构造函数，private这样该类就不会被实例化
     private DatabaseHelper(Context context){
@@ -49,6 +56,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource){
         try{
             TableUtils.createTable(connectionSource, User.class);
+            TableUtils.createTable(connectionSource,EatTable.class);
+            TableUtils.createTable(connectionSource,ExerciseTable.class);
+            TableUtils.createTable(connectionSource, UserPlan.class);
+            EatTable eatTable;
+            EatTableDao eatTableDao;
+
             //如果有别的表，写在这里应该
         } catch (SQLException e){
             e.printStackTrace();
@@ -66,6 +79,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                           ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, User.class, true);
+            TableUtils.dropTable(connectionSource,EatTable.class,true);
+            TableUtils.dropTable(connectionSource,ExerciseTable.class,true);
+            TableUtils.dropTable(connectionSource,UserPlan.class,true);
             //TableUtils.dropTable(connectionSource, Article.class, true);
             //TableUtils.dropTable(connectionSource, Student.class, true);
             onCreate(database, connectionSource);
@@ -121,6 +137,32 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return userDao;
     }
 
+    public Dao<EatTable, Integer> getEatTableDao() throws SQLException
+    {
+        if (eatTableDao == null)
+        {
+            eatTableDao = getDao(EatTable.class);
+        }
+        return eatTableDao;
+    }
+
+    public Dao<ExerciseTable, Integer> getExerciseTableDao() throws SQLException
+    {
+        if (exerciseTableDao == null)
+        {
+            exerciseTableDao = getDao(ExerciseTable.class);
+        }
+        return exerciseTableDao;
+    }
+
+    public Dao<UserPlan, Integer> getUserPlanDao() throws SQLException
+    {
+        if (userPlanDao == null)
+        {
+            userPlanDao = getDao(UserPlan.class);
+        }
+        return userPlanDao;
+    }
     /**
      * 释放资源
      */

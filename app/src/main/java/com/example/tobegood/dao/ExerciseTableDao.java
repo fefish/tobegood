@@ -3,33 +3,35 @@ package com.example.tobegood.dao;
 import android.content.Context;
 
 import com.example.tobegood.DatabaseHelper;
-import com.example.tobegood.bean.EatTable;
 import com.j256.ormlite.dao.Dao;
-
+import com.example.tobegood.bean.User;
+import com.example.tobegood.bean.EatTable;
+import com.example.tobegood.bean.ExerciseTable;
+import com.example.tobegood.bean.UserPlan;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ExerciseTable {
+public class ExerciseTableDao {
     //上下文
     private Context mContext;
     //主键查询
-    private Dao<ExerciseTable,Integer>exerciseTableDao;
+    private Dao<ExerciseTableDao,Integer>exerciseTableDao;
     //dao类
     private DatabaseHelper helper;
 
-    public ExerciseTable (Context context){
+    public ExerciseTableDao(Context context){
         this.mContext = context;
         //创建数据库
         helper = DatabaseHelper.getInstance(context);
         try{
             //操作dao
-            exerciseTableDao = helper.getDao(ExerciseTable.class);
+            exerciseTableDao = helper.getDao(ExerciseTableDao.class);
         }catch(SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void add(ExerciseTable exerciseTable){
+    public void add(ExerciseTableDao exerciseTable){
         try{
             exerciseTableDao.create(exerciseTable);
         }catch (SQLException e){
@@ -37,7 +39,7 @@ public class ExerciseTable {
         }
     }
 
-    public void update(ExerciseTable exerciseTable){
+    public void update(ExerciseTableDao exerciseTable){
         try{
             exerciseTableDao.update(exerciseTable);
         }catch (SQLException e){
@@ -45,7 +47,7 @@ public class ExerciseTable {
         }
     }
 
-    public void delete(ExerciseTable exerciseTable){
+    public void delete(ExerciseTableDao exerciseTable){
         try{
             exerciseTableDao.delete(exerciseTable);
         }catch(SQLException e){
@@ -53,7 +55,7 @@ public class ExerciseTable {
         }
     }
 
-    public List<ExerciseTable> listall(){
+    public List<ExerciseTableDao> listall(){
         try{
             return exerciseTableDao.queryForAll();
         }catch (SQLException e){

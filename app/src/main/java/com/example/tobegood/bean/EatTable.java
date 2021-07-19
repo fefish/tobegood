@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class EatTable {
 
-    @DatabaseField(columnName = "RecipeName",generatedId = true)
+    @DatabaseField(columnName = "RecipeId",generatedId = true)
     private int RecipeId;
     //主键
 
