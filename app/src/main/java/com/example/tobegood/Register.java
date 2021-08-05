@@ -175,10 +175,10 @@ public class Register extends AppCompatActivity  {
                 exerciseTableDao.add(exerciseTable5);
 
                 Intent intent_toMainPage = new Intent(Register.this,MainPage.class);
-                intent_toMainPage.putExtra("user",user.getId());
-                startActivityForResult(intent_toMainPage, 1);
+                intent_toMainPage.putExtra("usee",user.getId());
+                //startActivityForResult(intent_toMainPage, 1);
                 //Intent intent_toMainPage = new Intent(Register.this, MainPage.class);
-                //startActivity(intent_toMainPage);
+                startActivity(intent_toMainPage);
             }
         });
     }

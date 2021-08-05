@@ -17,8 +17,8 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
         Intent intent = getIntent();
-        String data = intent.getStringExtra("user");
-        Toast.makeText(getApplicationContext(),"register successful! Your information is"+data.toString(),
+        int data = intent.getIntExtra("usee",0);
+        Toast.makeText(getApplicationContext(),"register successful! Your information is"+data,
                 Toast.LENGTH_SHORT).show();
         Button button_mainpage_eat = (Button) findViewById(R.id.button_mainpage_eat);
         Button button_mainpage_exercise = (Button) findViewById(R.id.button_mainpage_exercise);
