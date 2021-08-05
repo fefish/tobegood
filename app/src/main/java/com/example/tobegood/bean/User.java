@@ -148,5 +148,6 @@ public class User {
                 ", eatdisorer'" + eatdisorder + '\'' +
                 '}';
     }
+
 }
 

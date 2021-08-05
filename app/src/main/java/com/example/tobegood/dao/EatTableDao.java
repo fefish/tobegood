@@ -48,7 +48,7 @@ public class EatTableDao {
 
     public void update(EatTable eatTable){
         try{
-            eatTableDao.update( eatTable);
+            eatTableDao.update(eatTable);
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -71,4 +71,13 @@ public class EatTableDao {
         return null;
     }
 
+    public EatTable getEatTableById(int id) {
+        EatTable eatTable = null;
+        try {
+            eatTable = eatTableDao.queryForId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return eatTable;
+    }
 }

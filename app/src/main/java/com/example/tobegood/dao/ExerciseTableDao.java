@@ -15,7 +15,7 @@ public class ExerciseTableDao {
     //上下文
     private Context mContext;
     //主键查询
-    private Dao<ExerciseTableDao,Integer>exerciseTableDao;
+    private Dao<ExerciseTable,Integer>exerciseTableDao;
     //dao类
     private DatabaseHelper helper;
 
@@ -25,13 +25,14 @@ public class ExerciseTableDao {
         helper = DatabaseHelper.getInstance(context);
         try{
             //操作dao
-            exerciseTableDao = helper.getDao(ExerciseTableDao.class);
+            exerciseTableDao = helper.getDao(ExerciseTable.class);
         }catch(SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void add(ExerciseTableDao exerciseTable){
+
+    public void add(ExerciseTable exerciseTable){
         try{
             exerciseTableDao.create(exerciseTable);
         }catch (SQLException e){
@@ -39,7 +40,7 @@ public class ExerciseTableDao {
         }
     }
 
-    public void update(ExerciseTableDao exerciseTable){
+    public void update(ExerciseTable exerciseTable){
         try{
             exerciseTableDao.update(exerciseTable);
         }catch (SQLException e){
@@ -47,7 +48,7 @@ public class ExerciseTableDao {
         }
     }
 
-    public void delete(ExerciseTableDao exerciseTable){
+    public void delete(ExerciseTable exerciseTable){
         try{
             exerciseTableDao.delete(exerciseTable);
         }catch(SQLException e){
@@ -55,12 +56,22 @@ public class ExerciseTableDao {
         }
     }
 
-    public List<ExerciseTableDao> listall(){
+    public List<ExerciseTable> listall(){
         try{
             return exerciseTableDao.queryForAll();
         }catch (SQLException e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public ExerciseTable getExerciseTableById(int id){
+        ExerciseTable exerciseTable = null;
+        try {
+            exerciseTable = exerciseTableDao.queryForId(id);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return exerciseTable;
     }
 }

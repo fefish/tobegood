@@ -1,11 +1,19 @@
 package com.example.tobegood;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import androidx.annotation.RequiresPermission;
 
 import com.example.tobegood.bean.EatTable;
 import com.example.tobegood.bean.ExerciseTable;
@@ -18,9 +26,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import com.example.tobegood.bean.User;
-import com.example.tobegood.bean.EatTable;
-import com.example.tobegood.bean.ExerciseTable;
-import com.example.tobegood.bean.UserPlan;
 //有别的表也写在这里
 
 //ORMlite需要有一个继承自OrmLiteSqliteOpenHelper的类，来完成数据的创建和升级
@@ -58,18 +63,55 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource){
         try{
-            TableUtils.createTable(connectionSource, User.class);
-            TableUtils.createTable(connectionSource,EatTable.class);
-            TableUtils.createTable(connectionSource,ExerciseTable.class);
-            TableUtils.createTable(connectionSource, UserPlan.class);
-            EatTable eatTable;
-            EatTableDao eatTableDao;
+            //String sqlpath= "app/assets/EatTable_info.sql";
+            TableUtils.createTableIfNotExists(connectionSource, User.class);
+            TableUtils.createTableIfNotExists(connectionSource,EatTable.class);
+            TableUtils.createTableIfNotExists(connectionSource,ExerciseTable.class);
+            TableUtils.createTableIfNotExists(connectionSource, UserPlan.class);
 
+            /*File file = new File(System.getProperty("user.dir"));
+            Log.d("1111", String.valueOf(file));*/
+/*            String sqlStr = readFileByLines(sqlpath);
+            database.execSQL(sqlStr);*/
+            //TableUtils.createTable(connectionSource,EatTable_Info.sql);
             //如果有别的表，写在这里应该
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
+   /* private String readFileByLines(String filePath) throws Exception {
+        StringBuffer str = new StringBuffer();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(filePath), "UTF-8"));
+            String tempString = null;
+            int line = 1;
+            // 一次读入一行，直到读入null为文件结束
+            while ((tempString = reader.readLine()) != null) {
+                // 显示行号
+                // System.out.println("line " + line + ": " + tempString);
+
+                str = str.append(" " + tempString);
+                line++;
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                }
+            }
+        }
+
+        return str.toString();
+    }
+*/
+
 
     /**
      * 在该方法中进行创建表操作

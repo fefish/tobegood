@@ -3,51 +3,50 @@ package com.example.tobegood.bean;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-
 import java.util.Objects;
 @DatabaseTable(tableName = "UserPlan_info")
+
 public class UserPlan {
     @DatabaseField(id = true)
     private int id;
 
-    @DatabaseField(columnName = "FirstRecipeId")
+    @DatabaseField(columnName = "RecipeId")
     private int FirstRecipeId;
 
     @DatabaseField(columnName = "FirstRecipeComplete")
     private Boolean FirstRecipeComplete;
 
-
-    @DatabaseField(columnName = "SecondRecipeId")
-    private int SecondRecipeId;
-
     @DatabaseField(columnName = "SecondRecipeComplete")
     private Boolean SecondRecipeComplete;
-
-    @DatabaseField(columnName = "ThirdRecipeId")
-    private int ThirdRecipeId;
 
     @DatabaseField(columnName = "ThirdRecipeComplete")
     private Boolean ThirdRecipeComplete;
 
-    @DatabaseField(columnName = "FirstExerciseId")
+    @DatabaseField(columnName = "ExerciseId")
     private int FirstExerciseId;
 
     @DatabaseField(columnName = "FirstExerciseComplete")
     private Boolean FirstExerciseComplete;
 
-    @DatabaseField(columnName = "SecondExerciseId")
-    private int SecondExerciseId;
-
     @DatabaseField(columnName = "SecondExerciseComplete")
     private Boolean SecondExerciseComplete;
-
-    @DatabaseField(columnName = "ThirdExerciseId")
-    private int ThirdExerciseId;
 
     @DatabaseField(columnName = "ThirdExerciseComplete")
     private Boolean ThirdExerciseComplete;
 
     public UserPlan(){
+    }
+
+    public UserPlan(int id, int firstRecipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {
+        this.id = id;
+        FirstRecipeId = firstRecipeId;
+        FirstRecipeComplete = firstRecipeComplete;
+        SecondRecipeComplete = secondRecipeComplete;
+        ThirdRecipeComplete = thirdRecipeComplete;
+        FirstExerciseId = firstExerciseId;
+        FirstExerciseComplete = firstExerciseComplete;
+        SecondExerciseComplete = secondExerciseComplete;
+        ThirdExerciseComplete = thirdExerciseComplete;
     }
 
     public int getId() {
@@ -64,46 +63,6 @@ public class UserPlan {
 
     public void setFirstRecipeId(int firstRecipeId) {
         FirstRecipeId = firstRecipeId;
-    }
-
-    public int getSecondRecipeId() {
-        return SecondRecipeId;
-    }
-
-    public void setSecondRecipeId(int secondRecipeId) {
-        SecondRecipeId = secondRecipeId;
-    }
-
-    public int getThirdRecipeId() {
-        return ThirdRecipeId;
-    }
-
-    public void setThirdRecipeId(int thirdRecipeId) {
-        ThirdRecipeId = thirdRecipeId;
-    }
-
-    public int getFirstExerciseId() {
-        return FirstExerciseId;
-    }
-
-    public void setFirstExerciseId(int firstExerciseId) {
-        FirstExerciseId = firstExerciseId;
-    }
-
-    public int getSecondExerciseId() {
-        return SecondExerciseId;
-    }
-
-    public void setSecondExerciseId(int secondExerciseId) {
-        SecondExerciseId = secondExerciseId;
-    }
-
-    public int getThirdExerciseId() {
-        return ThirdExerciseId;
-    }
-
-    public void setThirdExerciseId(int thirdExerciseId) {
-        ThirdExerciseId = thirdExerciseId;
     }
 
     public Boolean getFirstRecipeComplete() {
@@ -128,6 +87,14 @@ public class UserPlan {
 
     public void setThirdRecipeComplete(Boolean thirdRecipeComplete) {
         ThirdRecipeComplete = thirdRecipeComplete;
+    }
+
+    public int getFirstExerciseId() {
+        return FirstExerciseId;
+    }
+
+    public void setFirstExerciseId(int firstExerciseId) {
+        FirstExerciseId = firstExerciseId;
     }
 
     public Boolean getFirstExerciseComplete() {
@@ -161,11 +128,7 @@ public class UserPlan {
         UserPlan userPlan = (UserPlan) o;
         return getId() == userPlan.getId() &&
                 getFirstRecipeId() == userPlan.getFirstRecipeId() &&
-                getSecondRecipeId() == userPlan.getSecondRecipeId() &&
-                getThirdRecipeId() == userPlan.getThirdRecipeId() &&
                 getFirstExerciseId() == userPlan.getFirstExerciseId() &&
-                getSecondExerciseId() == userPlan.getSecondExerciseId() &&
-                getThirdExerciseId() == userPlan.getThirdExerciseId() &&
                 getFirstRecipeComplete().equals(userPlan.getFirstRecipeComplete()) &&
                 getSecondRecipeComplete().equals(userPlan.getSecondRecipeComplete()) &&
                 getThirdRecipeComplete().equals(userPlan.getThirdRecipeComplete()) &&
@@ -176,7 +139,7 @@ public class UserPlan {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstRecipeId(), getFirstRecipeComplete(), getSecondRecipeId(), getSecondRecipeComplete(), getThirdRecipeId(), getThirdRecipeComplete(), getFirstExerciseId(), getFirstExerciseComplete(), getSecondExerciseId(), getSecondExerciseComplete(), getThirdExerciseId(), getThirdExerciseComplete());
+        return Objects.hash(getId(), getFirstRecipeId(), getFirstRecipeComplete(), getSecondRecipeComplete(), getThirdRecipeComplete(), getFirstExerciseId(), getFirstExerciseComplete(), getSecondExerciseComplete(), getThirdExerciseComplete());
     }
 
     @Override
@@ -185,16 +148,13 @@ public class UserPlan {
                 "id=" + id +
                 ", FirstRecipeId=" + FirstRecipeId +
                 ", FirstRecipeComplete=" + FirstRecipeComplete +
-                ", SecondRecipeId=" + SecondRecipeId +
                 ", SecondRecipeComplete=" + SecondRecipeComplete +
-                ", ThirdRecipeId=" + ThirdRecipeId +
                 ", ThirdRecipeComplete=" + ThirdRecipeComplete +
                 ", FirstExerciseId=" + FirstExerciseId +
                 ", FirstExerciseComplete=" + FirstExerciseComplete +
-                ", SecondExerciseId=" + SecondExerciseId +
                 ", SecondExerciseComplete=" + SecondExerciseComplete +
-                ", ThirdExerciseId=" + ThirdExerciseId +
                 ", ThirdExerciseComplete=" + ThirdExerciseComplete +
                 '}';
     }
+
 }
