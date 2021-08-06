@@ -11,7 +11,7 @@ public class UserPlan {
     private int id;
 
     @DatabaseField(columnName = "RecipeId")
-    private int FirstRecipeId;
+    private int RecipeId;
 
     @DatabaseField(columnName = "FirstRecipeComplete")
     private Boolean FirstRecipeComplete;
@@ -37,9 +37,9 @@ public class UserPlan {
     public UserPlan(){
     }
 
-    public UserPlan(int id, int firstRecipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {
+    public UserPlan(int id, int recipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {
         this.id = id;
-        FirstRecipeId = firstRecipeId;
+        RecipeId = recipeId;
         FirstRecipeComplete = firstRecipeComplete;
         SecondRecipeComplete = secondRecipeComplete;
         ThirdRecipeComplete = thirdRecipeComplete;
@@ -57,12 +57,12 @@ public class UserPlan {
         this.id = id;
     }
 
-    public int getFirstRecipeId() {
-        return FirstRecipeId;
+    public int getRecipeId() {
+        return RecipeId;
     }
 
-    public void setFirstRecipeId(int firstRecipeId) {
-        FirstRecipeId = firstRecipeId;
+    public void setRecipeId(int recipeId) {
+        RecipeId = recipeId;
     }
 
     public Boolean getFirstRecipeComplete() {
@@ -127,7 +127,7 @@ public class UserPlan {
         if (!(o instanceof UserPlan)) return false;
         UserPlan userPlan = (UserPlan) o;
         return getId() == userPlan.getId() &&
-                getFirstRecipeId() == userPlan.getFirstRecipeId() &&
+                getRecipeId() == userPlan.getRecipeId() &&
                 getFirstExerciseId() == userPlan.getFirstExerciseId() &&
                 getFirstRecipeComplete().equals(userPlan.getFirstRecipeComplete()) &&
                 getSecondRecipeComplete().equals(userPlan.getSecondRecipeComplete()) &&
@@ -139,14 +139,14 @@ public class UserPlan {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstRecipeId(), getFirstRecipeComplete(), getSecondRecipeComplete(), getThirdRecipeComplete(), getFirstExerciseId(), getFirstExerciseComplete(), getSecondExerciseComplete(), getThirdExerciseComplete());
+        return Objects.hash(getId(), getRecipeId(), getFirstRecipeComplete(), getSecondRecipeComplete(), getThirdRecipeComplete(), getFirstExerciseId(), getFirstExerciseComplete(), getSecondExerciseComplete(), getThirdExerciseComplete());
     }
 
     @Override
     public String toString() {
         return "UserPlan{" +
                 "id=" + id +
-                ", FirstRecipeId=" + FirstRecipeId +
+                ", FirstRecipeId=" + RecipeId +
                 ", FirstRecipeComplete=" + FirstRecipeComplete +
                 ", SecondRecipeComplete=" + SecondRecipeComplete +
                 ", ThirdRecipeComplete=" + ThirdRecipeComplete +

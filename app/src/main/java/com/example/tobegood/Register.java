@@ -111,11 +111,14 @@ public class Register extends AppCompatActivity  {
                 user.setEatdisorder(meatdisorder);
                 userDao.add(user);
                 userDao.listall();
-                if (user.getWeight()/(user.getHeight()*user.getHeight())>10){
+               /* if (user.getWeight()/(user.getHeight()*user.getHeight())>10){
                     UserPlanDao userPlanDao = new UserPlanDao(Register.this);
                     UserPlan userPlan = new UserPlan(user.getId(),1,false,false,false,1,false,false,false);
-                }
-
+                }*/
+                UserPlanDao userPlanDao = new UserPlanDao(Register.this);
+                UserPlan userPlan= new UserPlan(user.getId(),1,false,false,false,1,false,false,false);
+                userPlanDao.add(userPlan);
+                Log.d("rerere", "onClick: "+userPlan.toString());
                 Toast.makeText(getApplicationContext(),"register successful! Your information is"+user.toString(),
                         Toast.LENGTH_SHORT).show();
                 EatTable eatTable1= new EatTable(1,"EatTable1Name1","recipe001",

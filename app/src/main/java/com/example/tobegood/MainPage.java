@@ -16,9 +16,9 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
-        Intent intent = getIntent();
-        int data = intent.getIntExtra("usee",0);
-        Toast.makeText(getApplicationContext(),"register successful! Your information is"+data,
+        Intent intent_getfrompre = getIntent();
+        int data = intent_getfrompre.getIntExtra("usee",0);
+        Toast.makeText(getApplicationContext(),"You have been to the main page! Your id is"+data,
                 Toast.LENGTH_SHORT).show();
         Button button_mainpage_eat = (Button) findViewById(R.id.button_mainpage_eat);
         Button button_mainpage_exercise = (Button) findViewById(R.id.button_mainpage_exercise);
@@ -26,6 +26,7 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent_toeatpage = new Intent(MainPage.this, EatActivity.class);
+                intent_toeatpage.putExtra("usee",data);
                 startActivity(intent_toeatpage);
             }
         });
@@ -33,6 +34,7 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent_toexercisepage = new Intent(MainPage.this, EatActivity.class);
+                intent_toexercisepage.putExtra("usee",data);
                 startActivity(intent_toexercisepage);
             }
         });

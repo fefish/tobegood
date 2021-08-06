@@ -148,6 +148,8 @@ public class ExerciseTable {
         ExerciseThreeContent = exerciseThreeContent;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

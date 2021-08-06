@@ -66,10 +66,11 @@ public class UserPlanDao {
     }
     //
 
-    public UserPlan getUserById(int id){
+    public UserPlan getUserPlanById(int id){
         UserPlan userPlan = null;
         try {
             userPlan = userPlanDao.queryForId(id);
+            return  userPlan;
         }catch (SQLException e){
             e.printStackTrace();
         }
