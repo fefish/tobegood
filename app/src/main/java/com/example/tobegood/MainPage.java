@@ -33,7 +33,7 @@ public class MainPage extends AppCompatActivity {
         button_mainpage_exercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toexercisepage = new Intent(MainPage.this, EatActivity.class);
+                Intent intent_toexercisepage = new Intent(MainPage.this, ExerciseActivity.class);
                 intent_toexercisepage.putExtra("usee",data);
                 startActivity(intent_toexercisepage);
             }

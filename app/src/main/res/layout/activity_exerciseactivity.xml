@@ -7,7 +7,7 @@
     tools:context=".ExerciseActivity">
 
     <ImageView
-        android:id="@+id/Image_eat_welcome"
+        android:id="@+id/Image_exercise_welcome"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="0dp"
@@ -22,7 +22,7 @@
         />
 
     <ImageView
-        android:id="@+id/Image_eat_exercise1"
+        android:id="@+id/Image_exercise_exercise1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
@@ -33,48 +33,48 @@
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Image_eat_welcome"
+        app:layout_constraintTop_toBottomOf="@+id/Image_exercise_welcome"
         />
 
     <TextView
-        android:id="@+id/Text_eat_exercise1_name"
+        android:id="@+id/Text_exercise_exercise1_name"
         android:layout_height="wrap_content"
 
         android:text="@string/Exercise_One"
         android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="@id/Image_eat_exercise1"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise1"
+        app:layout_constraintTop_toTopOf="@id/Image_exercise_exercise1"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise1"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="10dp"
         />
 
     <Button
-        android:id="@+id/Button_eat_exercise1_detail"
+        android:id="@+id/Button_exercise_exercise1_detail"
         android:text="@string/detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise1"
-        app:layout_constraintTop_toBottomOf="@+id/Text_eat_exercise1_name"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise1"
+        app:layout_constraintTop_toBottomOf="@+id/Text_exercise_exercise1_name"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button
-        android:id="@+id/Button_eat_exercise1_complete"
+        android:id="@+id/Button_exercise_exercise1_complete"
         android:text="@string/complete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise1"
-        app:layout_constraintTop_toBottomOf="@+id/Button_eat_exercise1_detail"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise1"
+        app:layout_constraintTop_toBottomOf="@+id/Button_exercise_exercise1_detail"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <ImageView
-        android:id="@+id/Image_eat_exercise2"
+        android:id="@+id/Image_exercise_exercise2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
@@ -85,47 +85,47 @@
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Image_eat_exercise1"
+        app:layout_constraintTop_toBottomOf="@+id/Image_exercise_exercise1"
         />
 
     <TextView
-        android:id="@+id/Text_eat_exercise2_name"
+        android:id="@+id/Text_exercise_exercise2_name"
         android:layout_height="wrap_content"
         android:text="@string/Exercise_One"
         android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="@id/Image_eat_exercise2"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise2"
+        app:layout_constraintTop_toTopOf="@id/Image_exercise_exercise2"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise2"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="10dp"
         />
 
     <Button
-        android:id="@+id/Button_eat_exercise2_detail"
+        android:id="@+id/Button_exercise_exercise2_detail"
         android:text="@string/detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise2"
-        app:layout_constraintTop_toBottomOf="@+id/Text_eat_exercise2_name"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise2"
+        app:layout_constraintTop_toBottomOf="@+id/Text_exercise_exercise2_name"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button
-        android:id="@+id/Button_eat_exercise2_complete"
+        android:id="@+id/Button_exercise_exercise2_complete"
         android:text="@string/complete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise2"
-        app:layout_constraintTop_toBottomOf="@+id/Button_eat_exercise2_detail"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise2"
+        app:layout_constraintTop_toBottomOf="@+id/Button_exercise_exercise2_detail"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <ImageView
-        android:id="@+id/Image_eat_exercise3"
+        android:id="@+id/Image_exercise_exercise3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
@@ -136,42 +136,42 @@
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Image_eat_exercise2"
+        app:layout_constraintTop_toBottomOf="@+id/Image_exercise_exercise2"
         />
 
     <TextView
-        android:id="@+id/Text_eat_exercise3_name"
+        android:id="@+id/Text_exercise_exercise3_name"
         android:layout_height="wrap_content"
         android:text="@string/Exercise_One"
         android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="@id/Image_eat_exercise3"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise3"
+        app:layout_constraintTop_toTopOf="@id/Image_exercise_exercise3"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise3"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="10dp"
         />
 
     <Button
-        android:id="@+id/Button_eat_exercise3_detail"
+        android:id="@+id/Button_exercise_exercise3_detail"
         android:text="@string/detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise3"
-        app:layout_constraintTop_toBottomOf="@+id/Text_eat_exercise3_name"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise3"
+        app:layout_constraintTop_toBottomOf="@+id/Text_exercise_exercise3_name"
         app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button
-        android:id="@+id/Button_eat_exercise3_complete"
+        android:id="@+id/Button_exercise_exercise3_complete"
         android:text="@string/complete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintLeft_toRightOf="@+id/Image_eat_exercise3"
-        app:layout_constraintTop_toBottomOf="@+id/Button_eat_exercise3_detail"
+        app:layout_constraintLeft_toRightOf="@+id/Image_exercise_exercise3"
+        app:layout_constraintTop_toBottomOf="@+id/Button_exercise_exercise3_detail"
         app:layout_constraintRight_toRightOf="parent"
         />
 
