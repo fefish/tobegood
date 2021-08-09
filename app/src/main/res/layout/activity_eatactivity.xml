@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".EatActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lightyellow"
+        android:textColor="@color/fontbrown"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/black"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:text="     Welcome! This is the first day!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/fontblue"
+            android:textStyle="bold"
+            android:textSize="@dimen/activity_horizontal_margin"/>
+    </androidx.appcompat.widget.Toolbar>
+
+
+
     <ImageView
         android:id="@+id/Image_eat_welcome"
         android:layout_width="0dp"
@@ -15,9 +36,9 @@
         android:contentDescription="@string/welcome"
         android:scaleType="centerCrop"
         android:src="@drawable/welcome1"
-        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintWidth_percent="1"
         />
 
@@ -72,7 +93,63 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
+    <ImageButton
+        android:id="@+id/bottom_eat"
+        android:src="@drawable/buttomicon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bottom_exercise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="0dp"
+        android:background="@color/heavyyellow"
+        />
 
+    <ImageButton
+        android:id="@+id/bottom_exercise"
+        android:src="@drawable/buttomicon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toRightOf="@id/bottom_eat"
+        app:layout_constraintRight_toLeftOf="@id/bottom_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerCrop"
+        android:background="@color/heavyyellow"
+        />
+
+    <ImageButton
+        android:id="@+id/bottom_settings"
+        android:src="@drawable/buttomicon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toRightOf="@id/bottom_exercise"
+        app:layout_constraintRight_toLeftOf="@id/bottom_help"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintDimensionRatio="1:1"
+        android:scaleType="centerCrop"
+        android:background="@color/heavyyellow"
+        />
+
+    <ImageButton
+        android:id="@+id/bottom_help"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/buttomicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toRightOf="@id/bottom_settings"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"
+        android:background="@color/heavyyellow"
+        />
 
 <!--
     <TextView

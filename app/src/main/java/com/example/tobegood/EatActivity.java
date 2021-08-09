@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -105,7 +106,45 @@ public class EatActivity extends AppCompatActivity {
         EatTable eatTable = eatTableDao.getEatTableById(yourid);
         Toast.makeText(getApplicationContext(),"You have been find the recipe! Your id is"+yourid,
                 Toast.LENGTH_SHORT).show();*/
+        /*bottom bar function start*/
+        ImageButton bottom_eat = (ImageButton) findViewById(R.id.bottom_eat);
+        ImageButton bottom_exercise = (ImageButton) findViewById(R.id.bottom_exercise);
+        ImageButton bottom_settings = (ImageButton) findViewById(R.id.bottom_settings);
+        ImageButton bottom_help = (ImageButton) findViewById(R.id.bottom_help);
+        bottom_eat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toeatpage = new Intent(EatActivity.this, EatActivity.class);
+                intent_toeatpage.putExtra("usee",data);
+                startActivity(intent_toeatpage);
+            }
+        });
+        bottom_exercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toexercisepage = new Intent(EatActivity.this, ExerciseActivity.class);
+                intent_toexercisepage.putExtra("usee",data);
+                startActivity(intent_toexercisepage);
+            }
+        });
+        bottom_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toeatpage = new Intent(EatActivity.this, SettingsActivity.class);
+                intent_toeatpage.putExtra("usee",data);
+                startActivity(intent_toeatpage);
+            }
+        });
+        bottom_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toexercisepage = new Intent(EatActivity.this, HelpActivity.class);
+                intent_toexercisepage.putExtra("usee",data);
+                startActivity(intent_toexercisepage);
+            }
+        });
 
+        /*bottom bar function end*/
     }
 
 

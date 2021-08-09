@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tobegood">
-        <activity android:name=".ExerciseActivity"></activity>
-        <activity android:name=".EatActivity" />
+        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ExerciseActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".EatActivity"
+            android:launchMode="singleInstance"/>
         <activity android:name=".Login" />
         <activity android:name=".Register" />
+        <!--
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
+        -->
         <activity android:name=".MainPage" />
         <activity android:name=".MainActivity">
             <intent-filter>

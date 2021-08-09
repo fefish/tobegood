@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <!--添加一条item-->
+<!--    <item android:id="@+id/Setting"
+        android:title="设置"
+        />-->
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/eaticon"
+        android:orderInCategory="80"
+        android:title="EatPage"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/exerciseicon"
+        android:orderInCategory="90"
+        android:title="ExercisePage"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="settings"
+        app:showAsAction="never"/>
+
+
+</menu>
