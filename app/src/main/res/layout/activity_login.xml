@@ -18,7 +18,6 @@
         app:subtitleTextColor="@color/fontblue"
         app:subtitle="Welcome!"
         tools:ignore="MissingConstraints">
-
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView

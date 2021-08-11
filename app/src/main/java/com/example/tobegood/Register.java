@@ -482,19 +482,5 @@ public class Register extends AppCompatActivity  {
         exerciseTableDao.add(exerciseTable35);
     }
 }
-/**
-    @Override
-    public void onClick(View v){
-        switch (v.getId()){
-            case R.id.Button_register_register:
-                userDao muserDao= new userDao(this);
-                user muser = new user();
-                muser.setId(mid);
-                luoji
-                break;
-            default:
-                break;
-        }
 
-    }
- */
+
