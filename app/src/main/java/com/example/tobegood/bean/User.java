@@ -33,12 +33,13 @@ public class User {
     private boolean eatdisorder;
     //是否需要饮食障碍帮助
 
+    @DatabaseField(columnName = "lastday")
+    private int lastday;
     //空构造
     public User(){
     }
 
-    //构造方法
-    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder) {
+    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder, int lastday) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -47,6 +48,7 @@ public class User {
         this.height = height;
         this.weight = weight;
         this.eatdisorder = eatdisorder;
+        this.lastday = lastday;
     }
 
     public int getId() {
@@ -57,25 +59,25 @@ public class User {
         this.id = id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
-   }
+    }
 
     public void setName(String name) {
-       this.name = name;
-   }
+        this.name = name;
+    }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
-   }
+    }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
-   }
+    }
 
-    public boolean isSex(){
+    public boolean isSex() {
         return sex;
-   }
+    }
 
     public void setSex(boolean sex) {
         this.sex = sex;
@@ -113,6 +115,14 @@ public class User {
         this.eatdisorder = eatdisorder;
     }
 
+    public int getLastday() {
+        return lastday;
+    }
+
+    public void setLastday(int lastday) {
+        this.lastday = lastday;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,15 +134,14 @@ public class User {
                 Float.compare(user.getHeight(), getHeight()) == 0 &&
                 Float.compare(user.getWeight(), getWeight()) == 0 &&
                 isEatdisorder() == user.isEatdisorder() &&
-                Objects.equals(getName(), user.getName()) &&
-                Objects.equals(getPassword(), user.getPassword());
+                getLastday() == user.getLastday() &&
+                getName().equals(user.getName()) &&
+                getPassword().equals(user.getPassword());
     }
-
-
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getPassword(), isSex(), isVegan(), getHeight(), getWeight(), isEatdisorder());
+        return Objects.hash(getId(), getName(), getPassword(), isSex(), isVegan(), getHeight(), getWeight(), isEatdisorder(), getLastday());
     }
 
     @Override
@@ -140,14 +149,14 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
                 ", password='" + password + '\'' +
-                ", vagan='" + vegan + '\'' +
-                ", height='" + height + '\'' +
-                ", weight='" + weight + '\'' +
-                ", eatdisorer'" + eatdisorder + '\'' +
+                ", sex=" + sex +
+                ", vegan=" + vegan +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", eatdisorder=" + eatdisorder +
+                ", lastday=" + lastday +
                 '}';
     }
-
 }
 

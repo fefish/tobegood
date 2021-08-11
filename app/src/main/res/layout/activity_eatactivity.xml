@@ -14,16 +14,13 @@
         android:textColor="@color/fontbrown"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/app_name"
-        app:titleTextColor="@color/black"
+        app:titleTextColor="@color/picturebrown"
+        app:subtitleTextColor="@color/fontblue"
+        app:subtitle="Welcome!"
         tools:ignore="MissingConstraints">
-        <TextView
-            android:text="     Welcome! This is the first day!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/fontblue"
-            android:textStyle="bold"
-            android:textSize="@dimen/activity_horizontal_margin"/>
+
     </androidx.appcompat.widget.Toolbar>
+
 
 
 

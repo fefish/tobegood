@@ -1,12 +1,16 @@
 package com.example.tobegood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,11 +27,53 @@ import com.example.tobegood.dao.UserPlanDao;
 import com.example.tobegood.dao.ExerciseTableDao;
 
 public class ExerciseActivity extends AppCompatActivity {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.setday, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("tobegood");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
+        switch (item.getItemId()) {
+
+            case R.id.firstday:
+                toolbar.setSubtitle("Welcome! This is first day");
+                break;
+            case R.id.secondday:
+                toolbar.setSubtitle("Welcome! This is second day");
+                break;
+            case R.id.thirdday:
+                toolbar.setSubtitle("Welcome! This is third day");
+                break;
+            case R.id.forthday:
+                toolbar.setSubtitle("Welcome! This is forth day");
+                break;
+            case R.id.fifthday:
+                toolbar.setSubtitle("Welcome! This is fifth day");
+                break;
+            case R.id.sixthday:
+                toolbar.setSubtitle("Welcome! This is sixth day");
+                break;
+            case R.id.seventhday:
+                toolbar.setSubtitle("Welcome! This is seventh day");
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exerciseactivity);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ImageView Image_exercise_exercise1 = (ImageView) findViewById(R.id.Image_exercise_exercise1);
         ImageView Image_exercise_exercise2 = (ImageView) findViewById(R.id.Image_exercise_exercise2);
         ImageView Image_exercise_exercise3 = (ImageView) findViewById(R.id.Image_exercise_exercise3);
@@ -45,10 +91,9 @@ public class ExerciseActivity extends AppCompatActivity {
         //get the user bean
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(data);
-
+        int today = user.getLastday();
         UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
-        UserPlan userPlan = userPlanDao.getUserPlanById(data);
-
+        UserPlan userPlan = userPlanDao.getUserPlanById(data+""+today);
         ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
         ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
         if (exerciseTable.getExerciseOnePic().equals("recipe001")){

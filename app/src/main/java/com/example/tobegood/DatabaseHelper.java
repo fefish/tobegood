@@ -40,7 +40,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<User, Integer> userDao;
     private Dao<EatTable,Integer>eatTableDao;
     private Dao<ExerciseTable,Integer>exerciseTableDao;
-    private Dao<UserPlan,Integer>userPlanDao;
+    private Dao<UserPlan,String>userPlanDao;
 
     //构造函数，private这样该类就不会被实例化
     private DatabaseHelper(Context context){
@@ -200,7 +200,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return exerciseTableDao;
     }
 
-    public Dao<UserPlan, Integer> getUserPlanDao() throws SQLException
+    public Dao<UserPlan, String> getUserPlanDao() throws SQLException
     {
         if (userPlanDao == null)
         {

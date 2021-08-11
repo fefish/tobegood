@@ -8,6 +8,8 @@ import com.example.tobegood.bean.EatTable;
 import com.example.tobegood.bean.ExerciseTable;
 import com.example.tobegood.bean.UserPlan;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.Where;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,7 +18,7 @@ public class UserPlanDao {
     //上下文
     private Context mContext;
     //主键查询
-    private Dao<UserPlan,Integer>userPlanDao;
+    private Dao<UserPlan,String>userPlanDao;
     //dao类
     private DatabaseHelper helper;
 
@@ -66,11 +68,21 @@ public class UserPlanDao {
     }
     //
 
-    public UserPlan getUserPlanById(int id){
+    public UserPlan getUserPlanById(String id){
         UserPlan userPlan = null;
         try {
             userPlan = userPlanDao.queryForId(id);
             return  userPlan;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return userPlan;
+    }
+
+    public UserPlan getUserPlanByIdAndToday(int id,int today){
+        UserPlan userPlan = null;
+        try {
+            userPlan = userPlanDao.queryBuilder().where().eq("id",id).and().eq("today",today).queryForFirst();
         }catch (SQLException e){
             e.printStackTrace();
         }

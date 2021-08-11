@@ -7,8 +7,8 @@ import java.util.Objects;
 @DatabaseTable(tableName = "UserPlan_info")
 
 public class UserPlan {
-    @DatabaseField(id = true)
-    private int id;
+    @DatabaseField(columnName = "id",id = true)
+    private String id;
 
     @DatabaseField(columnName = "RecipeId")
     private int RecipeId;
@@ -37,7 +37,7 @@ public class UserPlan {
     public UserPlan(){
     }
 
-    public UserPlan(int id, int recipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {
+    public UserPlan(String id, int recipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {
         this.id = id;
         RecipeId = recipeId;
         FirstRecipeComplete = firstRecipeComplete;
@@ -49,11 +49,11 @@ public class UserPlan {
         ThirdExerciseComplete = thirdExerciseComplete;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -126,9 +126,9 @@ public class UserPlan {
         if (this == o) return true;
         if (!(o instanceof UserPlan)) return false;
         UserPlan userPlan = (UserPlan) o;
-        return getId() == userPlan.getId() &&
-                getRecipeId() == userPlan.getRecipeId() &&
+        return getRecipeId() == userPlan.getRecipeId() &&
                 getFirstExerciseId() == userPlan.getFirstExerciseId() &&
+                getId().equals(userPlan.getId()) &&
                 getFirstRecipeComplete().equals(userPlan.getFirstRecipeComplete()) &&
                 getSecondRecipeComplete().equals(userPlan.getSecondRecipeComplete()) &&
                 getThirdRecipeComplete().equals(userPlan.getThirdRecipeComplete()) &&
@@ -145,8 +145,8 @@ public class UserPlan {
     @Override
     public String toString() {
         return "UserPlan{" +
-                "id=" + id +
-                ", FirstRecipeId=" + RecipeId +
+                "id='" + id + '\'' +
+                ", RecipeId=" + RecipeId +
                 ", FirstRecipeComplete=" + FirstRecipeComplete +
                 ", SecondRecipeComplete=" + SecondRecipeComplete +
                 ", ThirdRecipeComplete=" + ThirdRecipeComplete +
@@ -156,5 +156,4 @@ public class UserPlan {
                 ", ThirdExerciseComplete=" + ThirdExerciseComplete +
                 '}';
     }
-
 }
