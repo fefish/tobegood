@@ -4,42 +4,42 @@
     <item
         android:id="@+id/firstday"
         android:orderInCategory="1"
-        android:title="firstday"
+        android:title="first day"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/secondday"
         android:orderInCategory="2"
-        android:title="secondday"
+        android:title="second day"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/thirdday"
         android:orderInCategory="3"
-        android:title="thirdday"
+        android:title="third day"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/forthday"
         android:orderInCategory="4"
-        android:title="forthday"
+        android:title="forth day"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/fifthday"
         android:orderInCategory="5"
-        android:title="fifthday"
+        android:title="fifth day"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/sixthday"
         android:orderInCategory="6"
-        android:title="sixthday"
+        android:title="sixth day"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/seventhday"
         android:orderInCategory="7"
-        android:title="seventhday"
+        android:title="seventh day"
         app:showAsAction="never"/>
 </menu>

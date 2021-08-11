@@ -47,7 +47,9 @@
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_id"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Image_register_welcome" />
+        app:layout_constraintTop_toBottomOf="@id/Image_register_welcome"
+        android:inputType="number"
+        android:hint="please input number"/>
 
     <TextView
         android:id="@+id/Text_register_name"
@@ -191,7 +193,10 @@
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_height"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_vegan" />
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_vegan"
+        android:inputType="number"
+        android:hint="please input number in centeimetres"
+        />
 
     <TextView
         android:id="@+id/Text_register_weight"
@@ -214,7 +219,9 @@
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_password"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Edit_register_height" />
+        app:layout_constraintTop_toBottomOf="@id/Edit_register_height"
+        android:inputType="number"
+        android:hint="please input number in kilograms" />
 
     <TextView
         android:id="@+id/Text_register_eatdisorder"

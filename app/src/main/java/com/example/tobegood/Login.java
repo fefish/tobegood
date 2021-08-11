@@ -46,11 +46,10 @@ public class Login extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //配合menu使用,不添加menu不显示
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*//以下三行是修改回退按钮为白色的逻辑
+        //以下三行是修改回退按钮为白色的逻辑
         Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
@@ -58,9 +57,9 @@ public class Login extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Login.this, "返回", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "back", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
         EditText edit_login_id=(EditText)findViewById(R.id.Edit_login_id);
         EditText edit_login_password=(EditText)findViewById(R.id.Edit_login_password);
@@ -70,12 +69,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String loginId = edit_login_id.getText().toString();
-                String loginPassword = edit_login_password.getText().toString();
+                String password = edit_login_password.getText().toString();
                 int id = Integer.parseInt(loginId);
                 UserDao userDao = new UserDao(Login.this);
                 User user = userDao.getUserById(id);
-                String password = user.getPassword();
-                if (password.equals(loginPassword)) {
+                if(userDao.getUserById(id) == null){
+                    Toast.makeText (Login.this,"Please register first!",Toast.LENGTH_LONG).show ();
+                }else if (user.getPassword().equals(password)) {
                     Intent intent_toMainPage = new Intent(Login.this, MainPage.class);
                     intent_toMainPage.putExtra("usee",user.getId());
                     startActivity(intent_toMainPage);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,9 @@ public class Register extends AppCompatActivity  {
         RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        radioGroup_register_sex.check(R.id.Radiobutton_register_male);
+        radioGroup_register_vegan.check(R.id.Radiobutton_register_vegan);
+        radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,56 +78,47 @@ public class Register extends AppCompatActivity  {
                                 break;
                             default:
                                 break; }}});
-                //DatabaseHelper helper = DatabaseHelper.getInstance();
-                UserDao userDao= new UserDao(Register.this);
-                User user = new User();
-                final String midstr = edit_register_id.getText().toString();
-                final String mnamestr = edit_register_name.getText().toString();
-                final String mpasswordstr = edit_register_password.getText().toString();
-                final String mheightstr = edit_register_height.getText().toString();
-                final String mweightstr = edit_register_weight.getText().toString();
-                final Integer mid = Integer.parseInt(midstr);
-                //Integer mname = Integer.parseInt(mnamestr);
-                //Integer mpassword = Integer.parseInt(mpasswordstr);
-                final Integer mheight = Integer.parseInt(mheightstr);
-                final Integer mweight = Integer.parseInt(mweightstr);
-                user.setId(mid);
-                user.setName(mnamestr);
-                user.setPassword(mpasswordstr);
-                user.setHeight(mheight);
-                user.setWeight(mweight);
-                user.setSex(msex);
-                user.setVegan(mvegan);
-                user.setEatdisorder(meatdisorder);
-                user.setLastday(1);
-                userDao.add(user);
-                userDao.listall();
-               /* if (user.getWeight()/(user.getHeight()*user.getHeight())>10){
+                boolean buttons = false;
+                if (TextUtils.isEmpty(edit_register_id.getText())||TextUtils.isEmpty(edit_register_name.getText())||TextUtils.isEmpty(edit_register_password.getText())||TextUtils.isEmpty(edit_register_height.getText())||TextUtils.isEmpty(edit_register_weight.getText())){
+                    Toast.makeText(getApplicationContext(),"Please fill up all the information, thank you.",Toast.LENGTH_SHORT).show();
+                }else {
+                    UserDao userDao = new UserDao(Register.this);
+                    User user = new User();
+                    user.setId(Integer.parseInt(edit_register_id.getText().toString()));
+                    user.setName(edit_register_name.getText().toString());
+                    user.setPassword(edit_register_password.getText().toString());
+                    user.setHeight(Integer.parseInt(edit_register_height.getText().toString()));
+                    user.setWeight(Integer.parseInt(edit_register_weight.getText().toString()));
+                    user.setSex(msex);
+                    user.setVegan(mvegan);
+                    user.setEatdisorder(meatdisorder);
+                    user.setLastday(1);
+                    userDao.add(user);
+
+                    /*set userplan*/
                     UserPlanDao userPlanDao = new UserPlanDao(Register.this);
-                    UserPlan userPlan = new UserPlan(user.getId(),1,false,false,false,1,false,false,false);
-                }*/
-                UserPlanDao userPlanDao = new UserPlanDao(Register.this);
-                UserPlan userPlan1= new UserPlan(user.getId()+"1",1,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan1);
-                UserPlan userPlan2= new UserPlan(user.getId()+""+"2",2,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan2);
-                UserPlan userPlan3= new UserPlan(user.getId()+""+"3",3,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan3);
-                UserPlan userPlan4= new UserPlan(user.getId()+""+"4",4,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan4);
-                UserPlan userPlan5= new UserPlan(user.getId()+""+"5",5,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan5);
-                UserPlan userPlan6= new UserPlan(user.getId()+""+"6",6,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan6);
-                UserPlan userPlan7= new UserPlan(user.getId()+""+"7",7,false,false,false,1,false,false,false);
-                userPlanDao.add(userPlan7);
-                Log.d("rerere", "onClick: "+userPlan1.toString());
-                Toast.makeText(getApplicationContext(),"register successful! Your information is"+user.toString(),
-                        Toast.LENGTH_SHORT).show();
-                initialTable();
-                Intent intent_toMainPage = new Intent(Register.this,MainPage.class);
-                intent_toMainPage.putExtra("usee",user.getId());
-                startActivity(intent_toMainPage);
+                    UserPlan userPlan1 = new UserPlan(user.getId() + "1", 1, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan1);
+                    UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 2, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan2);
+                    UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 3, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan3);
+                    UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 4, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan4);
+                    UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 5, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan5);
+                    UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 6, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan6);
+                    UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 7, false, false, false, 1, false, false, false);
+                    userPlanDao.add(userPlan7);
+                    Log.d("rerere", "onClick: " + userPlan1.toString());
+                    Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString(),
+                            Toast.LENGTH_SHORT).show();
+                    initialTable();
+                    Intent intent_toMainPage = new Intent(Register.this, MainPage.class);
+                    intent_toMainPage.putExtra("usee", user.getId());
+                    startActivity(intent_toMainPage);
+                }
             }
         });
     }
