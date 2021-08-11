@@ -77,7 +77,10 @@ public class Login extends AppCompatActivity {
                 String password = user.getPassword();
                 if (password.equals(loginPassword)) {
                     Intent intent_toMainPage = new Intent(Login.this, MainPage.class);
+                    intent_toMainPage.putExtra("usee",user.getId());
                     startActivity(intent_toMainPage);
+                }else{
+                    Toast.makeText (Login.this,"Wrong id or password! Please retry.",Toast.LENGTH_LONG).show ();
                 }
             }
         });

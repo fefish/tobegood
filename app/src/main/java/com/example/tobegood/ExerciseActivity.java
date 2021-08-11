@@ -27,78 +27,37 @@ import com.example.tobegood.dao.UserPlanDao;
 import com.example.tobegood.dao.ExerciseTableDao;
 
 public class ExerciseActivity extends AppCompatActivity {
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.setday, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("tobegood");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
-        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
-        switch (item.getItemId()) {
-
-            case R.id.firstday:
-                toolbar.setSubtitle("Welcome! This is first day");
-                break;
-            case R.id.secondday:
-                toolbar.setSubtitle("Welcome! This is second day");
-                break;
-            case R.id.thirdday:
-                toolbar.setSubtitle("Welcome! This is third day");
-                break;
-            case R.id.forthday:
-                toolbar.setSubtitle("Welcome! This is forth day");
-                break;
-            case R.id.fifthday:
-                toolbar.setSubtitle("Welcome! This is fifth day");
-                break;
-            case R.id.sixthday:
-                toolbar.setSubtitle("Welcome! This is sixth day");
-                break;
-            case R.id.seventhday:
-                toolbar.setSubtitle("Welcome! This is seventh day");
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*initialization*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exerciseactivity);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ImageView Image_exercise_exercise1 = (ImageView) findViewById(R.id.Image_exercise_exercise1);
-        ImageView Image_exercise_exercise2 = (ImageView) findViewById(R.id.Image_exercise_exercise2);
-        ImageView Image_exercise_exercise3 = (ImageView) findViewById(R.id.Image_exercise_exercise3);
         Button Button_exercise_exercise1_detail = (Button) findViewById(R.id.Button_exercise_exercise1_detail);
         Button Button_exercise_exercise2_detail = (Button) findViewById(R.id.Button_exercise_exercise2_detail);
         Button Button_exercise_exercise3_detail = (Button) findViewById(R.id.Button_exercise_exercise3_detail);
         Button Button_exercise_exercise1_complete = (Button) findViewById(R.id.Button_exercise_exercise1_complete);
         Button Button_exercise_exercise2_complete = (Button) findViewById(R.id.Button_exercise_exercise2_complete);
         Button Button_exercise_exercise3_complete = (Button) findViewById(R.id.Button_exercise_exercise3_complete);
-
-        //get the user detail
         Intent intent_getfrompre = getIntent();
         int data = intent_getfrompre.getIntExtra("usee",0);
+        setImage(data);
+        setToolbar(data);
+        /*initialization end*/
+
 
         //get the user bean
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(data);
-        int today = user.getLastday();
         UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
-        UserPlan userPlan = userPlanDao.getUserPlanById(data+""+today);
+        UserPlan userPlan = userPlanDao.getUserPlanById(data+""+user.getLastday());
         ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
         ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
-        if (exerciseTable.getExerciseOnePic().equals("recipe001")){
-            Image_exercise_exercise1.setImageResource(R.drawable.recipe001);
-        }
+
+
+        /*button function*/
         Button_exercise_exercise1_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,17 +76,17 @@ public class ExerciseActivity extends AppCompatActivity {
         Button_exercise_exercise1_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Image_exercise_exercise1.setImageResource(R.drawable.complete);
+                setComplete(data,1);
             }});
         Button_exercise_exercise2_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Image_exercise_exercise2.setImageResource(R.drawable.complete);
+                setComplete(data,2);
             }});
         Button_exercise_exercise3_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Image_exercise_exercise3.setImageResource(R.drawable.complete);
+                setComplete(data,3);
             }});
 
         /*bottom bar function start*/
@@ -171,6 +130,137 @@ public class ExerciseActivity extends AppCompatActivity {
         /*bottom bar function end*/
 
     }
+
+    private void setToolbar(int id){
+        UserDao userDao = new UserDao(ExerciseActivity.this);
+        User user = userDao.getUserById(id);
+        int today = user.getLastday();
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("tobegood");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
+        switch (today){
+            case 1 :
+                toolbar.setSubtitle("Welcome! This is the first day");
+                break;
+            case 2 :
+                toolbar.setSubtitle("Welcome! This is the second day");
+                break;
+            case 3 :
+                toolbar.setSubtitle("Welcome! This is the third day");
+                break;
+            case 4 :
+                toolbar.setSubtitle("Welcome! This is the forth day");
+                break;
+            case 5 :
+                toolbar.setSubtitle("Welcome! This is the fifth day");
+                break;
+            case 6 :
+                toolbar.setSubtitle("Welcome! This is the sixth day");
+                break;
+            case 7 :
+                toolbar.setSubtitle("Welcome! This is the seventh day");
+                break;
+
+        }
+    }
+
+    private void setImage(int id){
+        UserDao userDao = new UserDao(ExerciseActivity.this);
+        User user = userDao.getUserById(id);
+        UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
+        int today = user.getLastday();
+        UserPlan userPlan = userPlanDao.getUserPlanById(id+""+today);
+        ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
+        ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
+        ImageView Image_exercise_exercise1 = (ImageView) findViewById(R.id.Image_exercise_exercise1);
+        ImageView Image_exercise_exercise2 = (ImageView) findViewById(R.id.Image_exercise_exercise2);
+        ImageView Image_exercise_exercise3 = (ImageView) findViewById(R.id.Image_exercise_exercise3);
+        if(userPlan.getFirstExerciseComplete()==false) {
+            int resID = getResources().getIdentifier(exerciseTable.getExerciseOnePic(), "drawable", "com.example.tobegood");
+            Image_exercise_exercise1.setImageDrawable(getResources().getDrawable(resID));
+        }else {
+            Image_exercise_exercise1.setImageResource(R.drawable.complete); }
+        if(userPlan.getSecondExerciseComplete()==false) {
+            int resID = getResources().getIdentifier(exerciseTable.getExerciseTwoPic(), "drawable", "com.example.tobegood");
+            Image_exercise_exercise2.setImageDrawable(getResources().getDrawable(resID));
+        }else {
+            Image_exercise_exercise2.setImageResource(R.drawable.complete); }
+        if(userPlan.getThirdExerciseComplete()==false) {
+            int resID = getResources().getIdentifier(exerciseTable.getExerciseThreePic(), "drawable", "com.example.tobegood");
+            Image_exercise_exercise3.setImageDrawable(getResources().getDrawable(resID));
+        }else {
+            Image_exercise_exercise3.setImageResource(R.drawable.complete); }
+    }
+
+    private void updateToday(int id, int today){
+        UserDao userDao = new UserDao(ExerciseActivity.this);
+        User user = userDao.getUserById(id);
+        user.setLastday(today);
+        userDao.update(user);
+    }
+
+    private void setComplete(int id , int num){
+        UserDao userDao = new UserDao(ExerciseActivity.this);
+        User user = userDao.getUserById(id);
+        UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
+        UserPlan userPlan = userPlanDao.getUserPlanById(id+""+user.getLastday());
+        ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
+        ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
+        switch (num){
+            case 1:
+                userPlan.setFirstExerciseComplete(!userPlan.getFirstExerciseComplete());
+                break;
+            case 2:
+                userPlan.setSecondExerciseComplete(!userPlan.getSecondExerciseComplete());
+                break;
+            case 3:
+                userPlan.setThirdExerciseComplete(!userPlan.getThirdExerciseComplete());
+                break;
+        }
+        userPlanDao.update(userPlan);
+        setImage(id);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.setday, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent_getfrompre = getIntent();
+        int data = intent_getfrompre.getIntExtra("usee",0);
+        switch (item.getItemId()) {
+            case R.id.firstday:
+                updateToday(data,1);
+                break;
+            case R.id.secondday:
+                updateToday(data,2);
+                break;
+            case R.id.thirdday:
+                updateToday(data,3);
+                break;
+            case R.id.forthday:
+                updateToday(data,4);
+                break;
+            case R.id.fifthday:
+                updateToday(data,5);
+                break;
+            case R.id.sixthday:
+                updateToday(data,6);
+                break;
+            case R.id.seventhday:
+                updateToday(data,7);
+                break;
+        }
+        setToolbar(data);
+        setImage(data);
+        return super.onOptionsItemSelected(item);
+    }
+
     private void detailDialog(ExerciseTable exerciseTable,int recipenum){
 
         AlertDialog dialog = new AlertDialog.Builder (this).create ();

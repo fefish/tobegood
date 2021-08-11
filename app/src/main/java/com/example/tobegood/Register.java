@@ -22,18 +22,6 @@ public class Register extends AppCompatActivity  {
     private boolean msex = false;
     private boolean mvegan = true;
     private boolean meatdisorder = true;
-    /**
-    final String midstr = null;
-    final String mnamestr = null;
-    final String mpasswordstr = null;
-    final String mheightstr = null;
-    final String mweightstr = null;
-    final Integer mid = 0;
-    //Integer mname;
-    //Integer mpassword;
-    final Integer mheight = 0;
-    final Integer mweight = 0;
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +38,6 @@ public class Register extends AppCompatActivity  {
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //button_register_register.setOnClickListener(this);
                 radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkId) {

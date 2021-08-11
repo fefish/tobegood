@@ -28,61 +28,7 @@ import com.example.tobegood.dao.UserPlanDao;
 
 public class EatActivity extends AppCompatActivity {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.setday, menu);
-        return true;
-    }
 
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("tobegood");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
-        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
-        Intent intent_getfrompre = getIntent();
-        int data = intent_getfrompre.getIntExtra("usee",0);
-        switch (item.getItemId()) {
-
-            case R.id.firstday:
-                toolbar.setSubtitle("Welcome! This is the first day");
-                updateToday(data,1);
-                setImage(data);
-                break;
-            case R.id.secondday:
-                toolbar.setSubtitle("Welcome! This is the second day");
-                updateToday(data,2);
-                setImage(data);
-                break;
-            case R.id.thirdday:
-                toolbar.setSubtitle("Welcome! This is the third day");
-                updateToday(data,3);
-                setImage(data);
-                break;
-            case R.id.forthday:
-                toolbar.setSubtitle("Welcome! This is the forth day");
-                updateToday(data,4);
-                setImage(data);
-                break;
-            case R.id.fifthday:
-                toolbar.setSubtitle("Welcome! This is the fifth day");
-                updateToday(data,5);
-                setImage(data);
-                break;
-            case R.id.sixthday:
-                toolbar.setSubtitle("Welcome! This is the sixth day");
-                updateToday(data,6);
-                setImage(data);
-                break;
-            case R.id.seventhday:
-                toolbar.setSubtitle("Welcome! This is the seventh day");
-                updateToday(data,7);
-                setImage(data);
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +37,6 @@ public class EatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_eatactivity);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ImageView Image_eat_recipe1 = (ImageView) findViewById(R.id.Image_eat_recipe1);
-        ImageView Image_eat_recipe2 = (ImageView) findViewById(R.id.Image_eat_recipe2);
-        ImageView Image_eat_recipe3 = (ImageView) findViewById(R.id.Image_eat_recipe3);
         Button Button_eat_recipe1_detail = (Button) findViewById(R.id.Button_eat_recipe1_detail);
         Button Button_eat_recipe2_detail = (Button) findViewById(R.id.Button_eat_recipe2_detail);
         Button Button_eat_recipe3_detail = (Button) findViewById(R.id.Button_eat_recipe3_detail);
@@ -103,10 +46,7 @@ public class EatActivity extends AppCompatActivity {
         Intent intent_getfrompre = getIntent();
         int data = intent_getfrompre.getIntExtra("usee",0);
         setImage(data);
-        Toast.makeText(getApplicationContext(),"Your id is"+data,
-                Toast.LENGTH_SHORT).show();
-        Log.d("getdata", String.valueOf(data));
-
+        setToolbar(data);
         /*initialization end*/
 
         UserDao userDao = new UserDao(EatActivity.this);
@@ -135,23 +75,17 @@ public class EatActivity extends AppCompatActivity {
         Button_eat_recipe1_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userPlan.setFirstRecipeComplete(!userPlan.getFirstRecipeComplete());
-                userPlanDao.update(userPlan);
-                setImage(data);
+                setComplete(data,1);
             }});
         Button_eat_recipe2_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userPlan.setSecondRecipeComplete(!userPlan.getSecondRecipeComplete());
-                userPlanDao.update(userPlan);
-                setImage(data);
+                setComplete(data,2);
             }});
         Button_eat_recipe3_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userPlan.setThirdRecipeComplete(!userPlan.getThirdRecipeComplete());
-                userPlanDao.update(userPlan);
-                setImage(data);
+                setComplete(data,3);
             }});
 
         /*button function end*/
@@ -193,18 +127,49 @@ public class EatActivity extends AppCompatActivity {
                 startActivity(intent_toexercisepage);
             }
         });
-
         /*bottom bar function end*/
     }
 
+    private void setToolbar(int id){
+        UserDao userDao = new UserDao(EatActivity.this);
+        User user = userDao.getUserById(id);
+        int today = user.getLastday();
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("tobegood");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
+        switch (today){
+            case 1 :
+                toolbar.setSubtitle("Welcome! This is the first day");
+                break;
+            case 2 :
+                toolbar.setSubtitle("Welcome! This is the second day");
+                break;
+            case 3 :
+                toolbar.setSubtitle("Welcome! This is the third day");
+                break;
+            case 4 :
+                toolbar.setSubtitle("Welcome! This is the forth day");
+                break;
+            case 5 :
+                toolbar.setSubtitle("Welcome! This is the fifth day");
+                break;
+            case 6 :
+                toolbar.setSubtitle("Welcome! This is the sixth day");
+                break;
+            case 7 :
+                toolbar.setSubtitle("Welcome! This is the seventh day");
+                break;
+
+        }
+    }
     private void setImage(int id){
         UserDao userDao = new UserDao(EatActivity.this);
         User user = userDao.getUserById(id);
         UserPlanDao userPlanDao = new UserPlanDao(EatActivity.this);
         int today = user.getLastday();
-        Toast.makeText (EatActivity.this,"yes"+today,Toast.LENGTH_LONG).show ();
         UserPlan userPlan = userPlanDao.getUserPlanById(id+""+today);
-        Toast.makeText (EatActivity.this,"yes"+userPlan.toString(),Toast.LENGTH_LONG).show ();
         EatTableDao eatTableDao = new EatTableDao(EatActivity.this);
         EatTable eatTable = eatTableDao.getEatTableById(userPlan.getRecipeId());
         ImageView Image_eat_recipe1 = (ImageView) findViewById(R.id.Image_eat_recipe1);
@@ -232,9 +197,29 @@ public class EatActivity extends AppCompatActivity {
         User user = userDao.getUserById(id);
         user.setLastday(today);
         userDao.update(user);
-        Toast.makeText (EatActivity.this,"OK"+user.getLastday(),Toast.LENGTH_LONG).show ();
     }
 
+    private void setComplete(int id , int num){
+        UserDao userDao = new UserDao(EatActivity.this);
+        User user = userDao.getUserById(id);
+        UserPlanDao userPlanDao = new UserPlanDao(EatActivity.this);
+        UserPlan userPlan = userPlanDao.getUserPlanById(id+""+user.getLastday());
+        EatTableDao eatTableDao = new EatTableDao(EatActivity.this);
+        EatTable eatTable = eatTableDao.getEatTableById(userPlan.getRecipeId());
+        switch (num){
+            case 1:
+                userPlan.setFirstRecipeComplete(!userPlan.getFirstRecipeComplete());
+                break;
+            case 2:
+                userPlan.setSecondRecipeComplete(!userPlan.getSecondRecipeComplete());
+                break;
+            case 3:
+                userPlan.setThirdRecipeComplete(!userPlan.getThirdRecipeComplete());
+                break;
+        }
+        userPlanDao.update(userPlan);
+        setImage(id);
+    }
 
     private void detailDialog(EatTable eatTable,int recipenum){
         AlertDialog dialog = new AlertDialog.Builder (this).create ();
@@ -259,5 +244,42 @@ public class EatActivity extends AppCompatActivity {
             }
         });
         dialog.show ();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.setday, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent_getfrompre = getIntent();
+        int data = intent_getfrompre.getIntExtra("usee",0);
+        switch (item.getItemId()) {
+            case R.id.firstday:
+                updateToday(data,1);
+                break;
+            case R.id.secondday:
+                updateToday(data,2);
+                break;
+            case R.id.thirdday:
+                updateToday(data,3);
+                break;
+            case R.id.forthday:
+                updateToday(data,4);
+                break;
+            case R.id.fifthday:
+                updateToday(data,5);
+                break;
+            case R.id.sixthday:
+                updateToday(data,6);
+                break;
+            case R.id.seventhday:
+                updateToday(data,7);
+                break;
+        }
+        setToolbar(data);
+        setImage(data);
+        return super.onOptionsItemSelected(item);
     }
 }
