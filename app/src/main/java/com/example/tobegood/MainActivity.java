@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,24 +17,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 //包名小写，类名大驼峰命名法，接口大驼峰命名法，方法小驼峰命名法，变量小驼峰命名法,xml全部小写，下划线，
 public class MainActivity extends AppCompatActivity {
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-        }
-
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_edit:
-                Toast.makeText(this, "我的", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setToolbar();
         Button button_first_choice_login = (Button) findViewById(R.id.button_first_choice_login);
         Button button_first_choice_register = (Button) findViewById(R.id.button_first_choice_register);
         button_first_choice_login.setOnClickListener(new View.OnClickListener() {
@@ -57,11 +45,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent_toregister);
             }
         });
-        //UserDao userDao= new UserDao(MainActivity.this);
-        //User user = new User();
-        //userDao.add(user);
+    }
 
-
+    private  void setToolbar(){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        toolbar.setTitle("tobegood");
+        toolbar.setSubtitle("Welcome to the tobegood.");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }
 
 

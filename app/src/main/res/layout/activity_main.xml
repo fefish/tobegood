@@ -17,12 +17,6 @@
         app:title="@string/app_name"
         app:titleTextColor="@color/black"
         tools:ignore="MissingConstraints"/>
-<!--        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="welcome, today is the first day"
-            />-->
-
 
     <ImageView
         android:id="@+id/Image_first_choice_welcome"
@@ -36,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:scaleType="centerCrop"
         app:layout_constraintWidth_percent="1"
-        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHeight_percent="0.2"
 
         />
     <!-- 首页面顶上的图片，一个welcome图片-->

@@ -1,8 +1,12 @@
 package com.example.tobegood;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.text.TextUtils;
@@ -27,6 +31,9 @@ public class Register extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setToolbar();
         Button button_register_register = (Button) findViewById(R.id.Button_register_register);
         EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
         EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
@@ -480,6 +487,25 @@ public class Register extends AppCompatActivity  {
         exerciseTableDao.add(exerciseTable33);
         exerciseTableDao.add(exerciseTable34);
         exerciseTableDao.add(exerciseTable35);
+    }
+
+    private  void setToolbar(){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        toolbar.setTitle("tobegood");
+        toolbar.setSubtitle("Welcome! This is Register Page.");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }
 }
 

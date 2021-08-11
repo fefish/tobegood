@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Register">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lightyellow"
+        android:textColor="@color/fontbrown"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/picturebrown"
+        app:subtitleTextColor="@color/fontblue"
+        app:subtitle="Welcome!"
+        tools:ignore="MissingConstraints">
+    </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/Image_register_welcome"
@@ -16,9 +29,9 @@
         android:contentDescription="@string/welcome"
         android:scaleType="centerCrop"
         android:src="@drawable/welcome1"
-        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintWidth_percent="1"
 
         />

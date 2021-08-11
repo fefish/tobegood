@@ -1,8 +1,12 @@
 package com.example.tobegood;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.tobegood.bean.EatTable;
+import com.example.tobegood.bean.User;
+import com.example.tobegood.dao.UserDao;
 
 public class MainPage extends AppCompatActivity {
 
@@ -18,12 +24,12 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
-
         /*get id from prepage start*/
         Intent intent_getfrompre = getIntent();
         int data = intent_getfrompre.getIntExtra("usee",0);
-        Toast.makeText(getApplicationContext(),"You have been to the main page! Your id is"+data,
-                Toast.LENGTH_SHORT).show();
+        setToolbar(data);
+/*        Toast.makeText(getApplicationContext(),"You have been to the main page! Your id is"+data,
+                Toast.LENGTH_SHORT).show();*/
         /*get id from prepage end*/
 
 
@@ -90,8 +96,29 @@ public class MainPage extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.setday,menu);
         return true;
+    }
+
+    private  void setToolbar(int data){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        UserDao userDao = new UserDao(MainPage.this);
+        User user = userDao.getUserById(data);
+        toolbar.setTitle("tobegood");
+        toolbar.setSubtitle("Welcome,"+user.getName()+"! This is the main page.");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }
 
 }
