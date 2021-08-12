@@ -242,7 +242,7 @@
         android:layout_height="40dp"
         android:layout_marginLeft="30dp"
         android:gravity="center_vertical"
-        android:text="@string/sex"
+        android:text="eat disorder"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintHorizontal_weight="30"
         app:layout_constraintLeft_toLeftOf="parent"

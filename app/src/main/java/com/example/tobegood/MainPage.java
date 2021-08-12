@@ -32,9 +32,6 @@ public class MainPage extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();*/
         /*get id from prepage end*/
 
-
-
-
         Button button_mainpage_eat = (Button) findViewById(R.id.button_mainpage_eat);
         Button button_mainpage_exercise = (Button) findViewById(R.id.button_mainpage_exercise);
         button_mainpage_eat.setOnClickListener(new View.OnClickListener() {

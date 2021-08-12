@@ -24,9 +24,9 @@ import com.example.tobegood.bean.User;
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity  {
-    private boolean msex = false;
-    private boolean mvegan = true;
-    private boolean meatdisorder = true;
+    private boolean mySex = false;
+    private boolean myVegan = true;
+    private boolean myEatDisorder = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,91 +34,59 @@ public class Register extends AppCompatActivity  {
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setToolbar();
+        initialPage();
         Button button_register_register = (Button) findViewById(R.id.Button_register_register);
-        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
-        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
-        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
-        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
-        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
         RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
-        radioGroup_register_sex.check(R.id.Radiobutton_register_male);
-        radioGroup_register_vegan.check(R.id.Radiobutton_register_vegan);
-        radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
+        radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId){
+                    case R.id.Radiobutton_register_male:
+                        mySex = true;
+                        break;
+                    case R.id.Radiobutton_register_female:
+                        mySex = false;
+                        break;
+                    default:
+                        break; }}});
+        radioGroup_register_vegan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId){
+                    case R.id.Radiobutton_register_vegan:
+                        myVegan = true;
+                        break;
+                    case R.id.Radiobutton_register_notvegan:
+                        myVegan = false;
+                        break;
+                    default:
+                        break; }}});
+        radioGroup_register_eatdisorder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId){
+                    case R.id.Radiobutton_register_eatdisorder:
+                        myEatDisorder = true;
+                        break;
+                    case R.id.Radiobutton_register_noeatdisorder:
+                        myEatDisorder = false;
+                        break;
+                    default:
+                        break; }}});
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkId) {
-                        switch (checkId){
-                            case R.id.Radiobutton_register_male:
-                                msex = true;
-                                break;
-                            case R.id.Radiobutton_register_female:
-                                msex = false;
-                                break;
-                            default:
-                                break; }}});
-                radioGroup_register_vegan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkId) {
-                        switch (checkId){
-                            case R.id.Radiobutton_register_notvegan:
-                                mvegan = true;
-                                break;
-                            case R.id.Radiobutton_register_vegan:
-                                mvegan = false;
-                                break;
-                            default:
-                                break; }}});
-                radioGroup_register_eatdisorder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkId) {
-                        switch (checkId){
-                            case R.id.Radiobutton_register_eatdisorder:
-                                meatdisorder = true;
-                                break;
-                            case R.id.Radiobutton_register_noeatdisorder:
-                                meatdisorder = false;
-                                break;
-                            default:
-                                break; }}});
-                boolean buttons = false;
-                if (TextUtils.isEmpty(edit_register_id.getText())||TextUtils.isEmpty(edit_register_name.getText())||TextUtils.isEmpty(edit_register_password.getText())||TextUtils.isEmpty(edit_register_height.getText())||TextUtils.isEmpty(edit_register_weight.getText())){
+                                UserDao userDao = new UserDao(Register.this);
+                User user = getUser();
+                if(findEmpty()){
                     Toast.makeText(getApplicationContext(),"Please fill up all the information, thank you.",Toast.LENGTH_SHORT).show();
-                }else {
-                    UserDao userDao = new UserDao(Register.this);
-                    User user = new User();
-                    user.setId(Integer.parseInt(edit_register_id.getText().toString()));
-                    user.setName(edit_register_name.getText().toString());
-                    user.setPassword(edit_register_password.getText().toString());
-                    user.setHeight(Integer.parseInt(edit_register_height.getText().toString()));
-                    user.setWeight(Integer.parseInt(edit_register_weight.getText().toString()));
-                    user.setSex(msex);
-                    user.setVegan(mvegan);
-                    user.setEatdisorder(meatdisorder);
-                    user.setLastday(1);
+                }else if(userDao.getUserById(user.getId())!= null){
+                    Toast.makeText(getApplicationContext(),"There is already a same id in the database, please change one.",Toast.LENGTH_SHORT).show();
+                }else{
                     userDao.add(user);
-
-                    /*set userplan*/
-                    UserPlanDao userPlanDao = new UserPlanDao(Register.this);
-                    UserPlan userPlan1 = new UserPlan(user.getId() + "1", 1, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan1);
-                    UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 2, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan2);
-                    UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 3, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan3);
-                    UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 4, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan4);
-                    UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 5, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan5);
-                    UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 6, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan6);
-                    UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 7, false, false, false, 1, false, false, false);
-                    userPlanDao.add(userPlan7);
-                    Log.d("rerere", "onClick: " + userPlan1.toString());
+                    setUserPlan(user.getId());
                     Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString(),
                             Toast.LENGTH_SHORT).show();
                     initialTable();
@@ -127,7 +95,34 @@ public class Register extends AppCompatActivity  {
                     startActivity(intent_toMainPage);
                 }
             }
-        });
+    });
+    }
+
+    private void initialPage(){
+        RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
+        RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
+        RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        radioGroup_register_sex.check(R.id.Radiobutton_register_male);
+        radioGroup_register_vegan.check(R.id.Radiobutton_register_vegan);
+        radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
+    }
+    private User getUser(){
+        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
+        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
+        User user = new User();
+        user.setId(Integer.parseInt(edit_register_id.getText().toString()));
+        user.setName(edit_register_name.getText().toString());
+        user.setPassword(edit_register_password.getText().toString());
+        user.setHeight(Integer.parseInt(edit_register_height.getText().toString()));
+        user.setWeight(Integer.parseInt(edit_register_weight.getText().toString()));
+        user.setSex(mySex);
+        user.setVegan(myVegan);
+        user.setEatdisorder(myEatDisorder);
+        user.setLastday(1);
+        return  user;
     }
 
     private void initialTable(){
@@ -273,7 +268,6 @@ public class Register extends AppCompatActivity  {
                 "EatTable5Name3");
 
         EatTableDao eatTableDao = new EatTableDao(Register.this);
-        EatTable eatTable111 = eatTableDao.getEatTableById(1);
         eatTableDao.add(eatTable1);
         eatTableDao.add(eatTable2);
         eatTableDao.add(eatTable3);
@@ -309,7 +303,6 @@ public class Register extends AppCompatActivity  {
         eatTableDao.add(eatTable33);
         eatTableDao.add(eatTable34);
         eatTableDao.add(eatTable35);
-        EatTable eatTable222 = eatTableDao.getEatTableById(1);
         // Log.d("222", eatTable222.getRecipeOnePic());
         ExerciseTable exerciseTable1= new ExerciseTable(1,"ExerciseTable1Name1","recipe001",
                 "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
@@ -506,6 +499,38 @@ public class Register extends AppCompatActivity  {
         toolbar.setSubtitle("Welcome! This is Register Page.");
         toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
+    }
+
+    private void setUserPlan(int id){
+        UserDao userDao = new UserDao(Register.this);
+        User user = userDao.getUserById(id);
+        /*set userplan*/
+        UserPlanDao userPlanDao = new UserPlanDao(Register.this);
+        UserPlan userPlan1 = new UserPlan(user.getId() + "1", 1, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan1);
+        UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 2, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan2);
+        UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 3, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan3);
+        UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 4, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan4);
+        UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 5, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan5);
+        UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 6, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan6);
+        UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 7, false, false, false, 1, false, false, false);
+        userPlanDao.add(userPlan7);
+        Log.d("rerere", "onClick: " + userPlan1.toString());
+    }
+
+    public boolean findEmpty(){
+        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
+        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
+        boolean findempty = TextUtils.isEmpty(edit_register_id.getText())||TextUtils.isEmpty(edit_register_name.getText())||TextUtils.isEmpty(edit_register_password.getText())||TextUtils.isEmpty(edit_register_height.getText())||TextUtils.isEmpty(edit_register_weight.getText());
+        return findempty;
     }
 }
 

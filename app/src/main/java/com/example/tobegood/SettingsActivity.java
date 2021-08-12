@@ -1,14 +1,183 @@
 package com.example.tobegood;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-public class SettingsActivity extends AppCompatActivity {
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import android.widget.RadioGroup;
+
+import com.example.tobegood.dao.UserDao;
+import com.example.tobegood.dao.*;
+import com.example.tobegood.bean.*;
+import com.example.tobegood.bean.User;
+import android.widget.Toast;
+
+public class SettingsActivity extends AppCompatActivity  {
+    private boolean mySex;
+    private boolean myVegan;
+    private boolean myEatDisorder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Button button_register_register = (Button) findViewById(R.id.Button_register_register);
+        Intent intent_getfrompre = getIntent();
+        int data = intent_getfrompre.getIntExtra("usee",0);
+        setToolbar(data);
+        initialPage(data);
+        RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
+        RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
+        RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId){
+                    case R.id.Radiobutton_register_male:
+                        mySex = true;
+                        break;
+                    case R.id.Radiobutton_register_female:
+                        mySex = false;
+                        break;
+                    default:
+                        break; }}});
+        radioGroup_register_vegan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId){
+                    case R.id.Radiobutton_register_vegan:
+                        myVegan = true;
+                        break;
+                    case R.id.Radiobutton_register_notvegan:
+                        myVegan = false;
+                        break;
+                    default:
+                        break; }}});
+        radioGroup_register_eatdisorder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId){
+                    case R.id.Radiobutton_register_eatdisorder:
+                        myEatDisorder = true;
+                        break;
+                    case R.id.Radiobutton_register_noeatdisorder:
+                        myEatDisorder = false;
+                        break;
+                    default:
+                        break; }}});
+        button_register_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDao userDao = new UserDao(SettingsActivity.this);
+                User user = getUser();
+                if (findEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please fill up all the information, thank you.",Toast.LENGTH_SHORT).show();
+                }else {
+                    userDao.update(user);
+                    Toast.makeText(getApplicationContext(),"You have updated your information! Now your information is "+user.toString(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private  void setToolbar(int data){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        UserDao userDao = new UserDao(SettingsActivity.this);
+        User user = userDao.getUserById(data);
+        toolbar.setTitle("tobegood");
+        toolbar.setSubtitle("Welcome, "+user.getName()+"! You can change your personal details.");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
+    }
+
+    private void initialPage(int data){
+        UserDao userDao = new UserDao(SettingsActivity.this);
+        User user = userDao.getUserById(data);
+        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
+        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
+        RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
+        RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
+        RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        edit_register_id.setText(user.getId()+"");
+        edit_register_password.setText(user.getPassword());
+        edit_register_name.setText(user.getName());
+        edit_register_height.setText((int)user.getHeight()+"");
+        edit_register_weight.setText((int) user.getWeight()+"");
+        if(user.isSex()){
+            radioGroup_register_sex.check(R.id.Radiobutton_register_male);
+        }else{
+            radioGroup_register_sex.check(R.id.Radiobutton_register_female);
+        }
+        if(user.isVegan()){
+            radioGroup_register_vegan.check(R.id.Radiobutton_register_vegan);
+        }else{
+            radioGroup_register_vegan.check(R.id.Radiobutton_register_notvegan);
+        }
+        if(user.isEatdisorder()){
+            radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
+        }else{
+            radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_noeatdisorder);
+        }
+    }
+
+    private User getUser(){
+        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
+        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
+        User user = new User();
+        user.setId(Integer.parseInt(edit_register_id.getText().toString()));
+        user.setName(edit_register_name.getText().toString());
+        user.setPassword(edit_register_password.getText().toString());
+        user.setHeight(Integer.parseInt(edit_register_height.getText().toString()));
+        user.setWeight(Integer.parseInt(edit_register_weight.getText().toString()));
+        user.setSex(mySex);
+        user.setVegan(myVegan);
+        user.setEatdisorder(myEatDisorder);
+        user.setLastday(1);
+        return  user;
+    }
+
+    private void setUserPlan(int id){
+        //xie
+    }
+
+    public boolean findEmpty(){
+        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
+        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
+        boolean findempty = TextUtils.isEmpty(edit_register_id.getText())||TextUtils.isEmpty(edit_register_name.getText())||TextUtils.isEmpty(edit_register_password.getText())||TextUtils.isEmpty(edit_register_height.getText())||TextUtils.isEmpty(edit_register_weight.getText());
+        return findempty;
     }
 }
+
+
