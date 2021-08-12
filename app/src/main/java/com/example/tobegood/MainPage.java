@@ -51,6 +51,36 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
+        setBottomBar(data);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.setday,menu);
+        return true;
+    }
+
+    private  void setToolbar(int data){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        UserDao userDao = new UserDao(MainPage.this);
+        User user = userDao.getUserById(data);
+        toolbar.setTitle("tobegood");
+        toolbar.setSubtitle("Welcome,"+user.getName()+"! This is the main page.");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
+        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
+    }
+
+    private void setBottomBar(int data){
         /*bottom bar function start*/
         ImageButton bottom_eat = (ImageButton) findViewById(R.id.bottom_eat);
         ImageButton bottom_exercise = (ImageButton) findViewById(R.id.bottom_exercise);
@@ -91,31 +121,4 @@ public class MainPage extends AppCompatActivity {
 
         /*bottom bar function end*/
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.setday,menu);
-        return true;
-    }
-
-    private  void setToolbar(int data){
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        UserDao userDao = new UserDao(MainPage.this);
-        User user = userDao.getUserById(data);
-        toolbar.setTitle("tobegood");
-        toolbar.setSubtitle("Welcome,"+user.getName()+"! This is the main page.");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
-        toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
-    }
-
 }

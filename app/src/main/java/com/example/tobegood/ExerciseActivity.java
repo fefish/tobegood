@@ -89,45 +89,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 setComplete(data,3);
             }});
 
-        /*bottom bar function start*/
-        ImageButton bottom_eat = (ImageButton) findViewById(R.id.bottom_eat);
-        ImageButton bottom_exercise = (ImageButton) findViewById(R.id.bottom_exercise);
-        ImageButton bottom_settings = (ImageButton) findViewById(R.id.bottom_settings);
-        ImageButton bottom_help = (ImageButton) findViewById(R.id.bottom_help);
-        bottom_eat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_toeatpage = new Intent(ExerciseActivity.this, EatActivity.class);
-                intent_toeatpage.putExtra("usee",data);
-                startActivity(intent_toeatpage);
-            }
-        });
-        bottom_exercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_toexercisepage = new Intent(ExerciseActivity.this, ExerciseActivity.class);
-                intent_toexercisepage.putExtra("usee",data);
-                startActivity(intent_toexercisepage);
-            }
-        });
-        bottom_settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_toeatpage = new Intent(ExerciseActivity.this, SettingsActivity.class);
-                intent_toeatpage.putExtra("usee",data);
-                startActivity(intent_toeatpage);
-            }
-        });
-        bottom_help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_toexercisepage = new Intent(ExerciseActivity.this, HelpActivity.class);
-                intent_toexercisepage.putExtra("usee",data);
-                startActivity(intent_toexercisepage);
-            }
-        });
-
-        /*bottom bar function end*/
+        setBottomBar(data);
 
     }
 
@@ -285,5 +247,44 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         });
         dialog.show ();
+    }
+
+    private void setBottomBar(int data){
+        ImageButton bottom_eat = (ImageButton) findViewById(R.id.bottom_eat);
+        ImageButton bottom_exercise = (ImageButton) findViewById(R.id.bottom_exercise);
+        ImageButton bottom_settings = (ImageButton) findViewById(R.id.bottom_settings);
+        ImageButton bottom_help = (ImageButton) findViewById(R.id.bottom_help);
+        bottom_eat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toeatpage = new Intent(ExerciseActivity.this, EatActivity.class);
+                intent_toeatpage.putExtra("usee",data);
+                startActivity(intent_toeatpage);
+            }
+        });
+        bottom_exercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toexercisepage = new Intent(ExerciseActivity.this, ExerciseActivity.class);
+                intent_toexercisepage.putExtra("usee",data);
+                startActivity(intent_toexercisepage);
+            }
+        });
+        bottom_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toeatpage = new Intent(ExerciseActivity.this, SettingsActivity.class);
+                intent_toeatpage.putExtra("usee",data);
+                startActivity(intent_toeatpage);
+            }
+        });
+        bottom_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_toexercisepage = new Intent(ExerciseActivity.this, HelpActivity.class);
+                intent_toexercisepage.putExtra("usee",data);
+                startActivity(intent_toexercisepage);
+            }
+        });
     }
 }
