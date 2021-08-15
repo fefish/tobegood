@@ -28,7 +28,7 @@ public class Register extends AppCompatActivity {
     private boolean mySex = false;
     private boolean myVegan = true;
     private boolean myEatDisorder = true;
-
+    private int myPurpose = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +41,7 @@ public class Register extends AppCompatActivity {
         RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        RadioGroup radioGroup_register_purpose = (RadioGroup) findViewById(R.id.RadioGroup_register_purpose);
         radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkId) {
@@ -86,6 +87,24 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+        radioGroup_register_purpose.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId) {
+                    case R.id.Radiobutton_register_purpose1:
+                        myPurpose = 1;
+                        break;
+                    case R.id.Radiobutton_register_purpose2:
+                        myPurpose = 2;
+                        break;
+                    case R.id.Radiobutton_register_purpose3:
+                        myPurpose = 3;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,9 +132,11 @@ public class Register extends AppCompatActivity {
         RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        RadioGroup radioGroup_register_purpose = (RadioGroup) findViewById(R.id.RadioGroup_register_purpose);
         radioGroup_register_sex.check(R.id.Radiobutton_register_male);
         radioGroup_register_vegan.check(R.id.Radiobutton_register_vegan);
         radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
+        radioGroup_register_purpose.check(R.id.Radiobutton_register_purpose1);
     }
 
     private User getUser() {
@@ -136,6 +157,7 @@ public class Register extends AppCompatActivity {
         user.setEatdisorder(myEatDisorder);
         user.setEmergencynumber(edit_register_contactnumber.getText().toString());
         user.setLastday(1);
+        user.setPurpose(myPurpose);
         return user;
     }
 
@@ -543,7 +565,8 @@ public class Register extends AppCompatActivity {
         EditText edit_register_password = (EditText) findViewById(R.id.Edit_register_password);
         EditText edit_register_height = (EditText) findViewById(R.id.Edit_register_height);
         EditText edit_register_weight = (EditText) findViewById(R.id.Edit_register_weight);
-        boolean findempty = TextUtils.isEmpty(edit_register_id.getText()) || TextUtils.isEmpty(edit_register_name.getText()) || TextUtils.isEmpty(edit_register_password.getText()) || TextUtils.isEmpty(edit_register_height.getText()) || TextUtils.isEmpty(edit_register_weight.getText());
+        EditText editText_register_contactnumber = (EditText) findViewById(R.id.Edit_register_contactnumber);
+        boolean findempty = TextUtils.isEmpty(edit_register_id.getText()) || TextUtils.isEmpty(edit_register_name.getText()) || TextUtils.isEmpty(edit_register_password.getText()) || TextUtils.isEmpty(edit_register_height.getText()) || TextUtils.isEmpty(edit_register_weight.getText())||TextUtils.isEmpty(editText_register_contactnumber.getText());
         return findempty;
     }
 }

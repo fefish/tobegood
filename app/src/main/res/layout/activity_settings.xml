@@ -13,12 +13,11 @@
         android:background="@color/lightyellow"
         android:textColor="@color/fontbrown"
         app:layout_constraintTop_toTopOf="parent"
+        app:subtitle="Welcome!"
+        app:subtitleTextColor="@color/fontblue"
         app:title="@string/app_name"
         app:titleTextColor="@color/picturebrown"
-        app:subtitleTextColor="@color/fontblue"
-        app:subtitle="Welcome!"
-        tools:ignore="MissingConstraints">
-    </androidx.appcompat.widget.Toolbar>
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/Image_register_welcome"
@@ -29,7 +28,7 @@
         android:contentDescription="@string/welcome"
         android:scaleType="centerCrop"
         android:src="@drawable/welcome1"
-        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHeight_percent="0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintWidth_percent="1"
@@ -57,12 +56,12 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical"
+        android:hint="please input number"
+        android:inputType="number"
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_id"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Image_register_welcome"
-        android:inputType="number"
-        android:hint="please input number"/>
+        app:layout_constraintTop_toBottomOf="@id/Image_register_welcome" />
 
     <TextView
         android:id="@+id/Text_register_name"
@@ -126,19 +125,20 @@
 
     <RadioGroup
         android:id="@+id/RadioGroup_register_sex"
-        android:layout_height="40dp"
         android:layout_width="0dp"
-        app:layout_constraintHorizontal_weight="70"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_sex"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Edit_register_password"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@id/Edit_register_password">
+
         <RadioButton
             android:id="@+id/Radiobutton_register_male"
-            android:text="@string/male"
             android:layout_width="wrap_content"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/Radiobutton_register_female"
@@ -163,19 +163,20 @@
 
     <RadioGroup
         android:id="@+id/RadioGroup_register_vegan"
-        android:layout_height="40dp"
         android:layout_width="0dp"
-        app:layout_constraintHorizontal_weight="70"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_sex"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_sex"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_sex">
+
         <RadioButton
             android:id="@+id/Radiobutton_register_vegan"
-            android:text="@string/yes"
             android:layout_width="wrap_content"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:text="@string/yes" />
 
         <RadioButton
             android:id="@+id/Radiobutton_register_notvegan"
@@ -203,13 +204,12 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:gravity="center_vertical"
+        android:hint="please input number in centeimetres"
+        android:inputType="number"
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_height"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_vegan"
-        android:inputType="number"
-        android:hint="please input number in centeimetres"
-        />
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_vegan" />
 
     <TextView
         android:id="@+id/Text_register_weight"
@@ -229,12 +229,12 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:gravity="center_vertical"
+        android:hint="please input number in kilograms"
+        android:inputType="number"
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_password"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Edit_register_height"
-        android:inputType="number"
-        android:hint="please input number in kilograms" />
+        app:layout_constraintTop_toBottomOf="@id/Edit_register_height" />
 
     <TextView
         android:id="@+id/Text_register_eatdisorder"
@@ -251,19 +251,20 @@
 
     <RadioGroup
         android:id="@+id/RadioGroup_register_eatdisorder"
-        android:layout_height="40dp"
         android:layout_width="0dp"
-        app:layout_constraintHorizontal_weight="70"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_eatdisorder"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Edit_register_weight"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@id/Edit_register_weight">
+
         <RadioButton
             android:id="@+id/Radiobutton_register_eatdisorder"
-            android:text="@string/yes"
             android:layout_width="wrap_content"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:text="@string/yes" />
 
         <RadioButton
             android:id="@+id/Radiobutton_register_noeatdisorder"
@@ -291,81 +292,120 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:gravity="center_vertical"
+        android:hint="please input contact number"
+        android:inputType="number"
         app:layout_constraintHorizontal_weight="70"
         app:layout_constraintLeft_toRightOf="@id/Text_register_contactnumber"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_eatdisorder"
-        android:inputType="number"
-        android:hint="please input contact number" />
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_eatdisorder" />
 
+    <TextView
+        android:id="@+id/Text_register_purpose"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:text="your purpose"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/RadioGroup_register_purpose"
+        app:layout_constraintTop_toBottomOf="@id/Text_register_contactnumber" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup_register_purpose"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_weight="70"
+        app:layout_constraintLeft_toRightOf="@id/Text_register_purpose"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Edit_register_contactnumber">
+
+        <RadioButton
+            android:id="@+id/Radiobutton_register_purpose1"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="lose weight" />
+
+        <RadioButton
+            android:id="@+id/Radiobutton_register_purpose2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="gain weight" />
+
+        <RadioButton
+            android:id="@+id/Radiobutton_register_purpose3"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="gain muscle" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/Button_register_register"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:text="submit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Text_register_contactnumber"
-        android:text="submit"/>
+        app:layout_constraintTop_toBottomOf="@id/Text_register_purpose" />
 
 
     <ImageButton
         android:id="@+id/bottom_eat"
-        android:src="@drawable/bottomeaticon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/bottom_exercise"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintHorizontal_weight="30"
-        app:layout_constraintDimensionRatio="1:1"
-        android:scaleType="centerCrop"
         android:layout_marginBottom="0dp"
         android:background="@color/heavyyellow"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/bottomeaticon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bottom_exercise" />
 
     <ImageButton
         android:id="@+id/bottom_exercise"
-        android:src="@drawable/bottomexerciseicon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintLeft_toRightOf="@id/bottom_eat"
-        app:layout_constraintRight_toLeftOf="@id/bottom_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="30"
-        app:layout_constraintDimensionRatio="1:1"
-        android:scaleType="centerCrop"
         android:background="@color/heavyyellow"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/bottomexerciseicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toRightOf="@id/bottom_eat"
+        app:layout_constraintRight_toLeftOf="@id/bottom_settings" />
 
     <ImageButton
         android:id="@+id/bottom_settings"
-        android:src="@drawable/bottomhelpicon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintLeft_toRightOf="@id/bottom_exercise"
-        app:layout_constraintRight_toLeftOf="@id/bottom_help"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="30"
-        app:layout_constraintDimensionRatio="1:1"
-        android:scaleType="centerCrop"
         android:background="@color/heavyyellow"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/bottomhelpicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toRightOf="@id/bottom_exercise"
+        app:layout_constraintRight_toLeftOf="@id/bottom_help" />
+
 
     <ImageButton
         android:id="@+id/bottom_help"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/heavyyellow"
+        android:scaleType="centerCrop"
         android:src="@drawable/bottomsettingsicon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHorizontal_weight="30"
         app:layout_constraintLeft_toRightOf="@id/bottom_settings"
-        app:layout_constraintRight_toRightOf="parent"
-        android:scaleType="centerCrop"
-        android:background="@color/heavyyellow"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
