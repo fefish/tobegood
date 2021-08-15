@@ -5,26 +5,30 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.tobegood.bean.EatTable;
 import com.example.tobegood.bean.User;
 import com.example.tobegood.bean.UserPlan;
 import com.example.tobegood.bean.ExerciseTable;
-import com.example.tobegood.dao.EatTableDao;
 import com.example.tobegood.dao.UserDao;
 import com.example.tobegood.dao.UserPlanDao;
 import com.example.tobegood.dao.ExerciseTableDao;
+
+import java.util.Calendar;
+
+import static com.example.tobegood.CalenderFunction.addCalendarEvent;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -43,7 +47,7 @@ public class ExerciseActivity extends AppCompatActivity {
         Button Button_exercise_exercise3_complete = (Button) findViewById(R.id.Button_exercise_exercise3_complete);
         Intent intent_getfrompre = getIntent();
         int data = intent_getfrompre.getIntExtra("usee",0);
-        setImage(data);
+        setImageAndText(data);
         setToolbar(data);
         /*initialization end*/
 
@@ -128,7 +132,7 @@ public class ExerciseActivity extends AppCompatActivity {
         }
     }
 
-    private void setImage(int id){
+    private void setImageAndText(int id){
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(id);
         UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
@@ -139,6 +143,12 @@ public class ExerciseActivity extends AppCompatActivity {
         ImageView Image_exercise_exercise1 = (ImageView) findViewById(R.id.Image_exercise_exercise1);
         ImageView Image_exercise_exercise2 = (ImageView) findViewById(R.id.Image_exercise_exercise2);
         ImageView Image_exercise_exercise3 = (ImageView) findViewById(R.id.Image_exercise_exercise3);
+        TextView Text_exercise_exercise1_name = (TextView) findViewById(R.id.Text_exercise_exercise1_name );
+        TextView Text_exercise_exercise2_name = (TextView) findViewById(R.id.Text_exercise_exercise2_name );
+        TextView Text_exercise_exercise3_name = (TextView) findViewById(R.id.Text_exercise_exercise3_name );
+        Text_exercise_exercise1_name.setText(exerciseTable.getExerciseOneName());
+        Text_exercise_exercise2_name.setText(exerciseTable.getExerciseTwoName());
+        Text_exercise_exercise3_name.setText(exerciseTable.getExerciseThreeName());
         if(userPlan.getFirstExerciseComplete()==false) {
             int resID = getResources().getIdentifier(exerciseTable.getExerciseOnePic(), "drawable", "com.example.tobegood");
             Image_exercise_exercise1.setImageDrawable(getResources().getDrawable(resID));
@@ -182,7 +192,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 break;
         }
         userPlanDao.update(userPlan);
-        setImage(id);
+        setImageAndText(id);
     }
 
     @Override
@@ -217,10 +227,45 @@ public class ExerciseActivity extends AppCompatActivity {
             case R.id.seventhday:
                 updateToday(data,7);
                 break;
+            case R.id.clock1:
+                setClock(1);
+                break;
+            case R.id.clock2:
+                setClock(2);
+                break;
+            case R.id.clock3:
+                setClock(3);
+                break;
         }
         setToolbar(data);
-        setImage(data);
+        setImageAndText(data);
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setClock(int num) {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(ExerciseActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                switch (num) {
+                    case 1:
+                        addCalendarEvent(ExerciseActivity.this, "It's time to exercise, do your first exercise!", "Don't forget to do your first exercise!", hourOfDay, minute);
+                        Toast.makeText(ExerciseActivity.this, "OK" + hourOfDay + minute, Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+                        addCalendarEvent(ExerciseActivity.this, "It's time to exercise, do your second exercise!", "Don't forget to do your second exercise!", hourOfDay, minute);
+                        Toast.makeText(ExerciseActivity.this, "OK" + hourOfDay + minute, Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        addCalendarEvent(ExerciseActivity.this, "It's time to exercise, do your third exercise!", "Don't forget to do your third exercise!", hourOfDay, minute);
+                        Toast.makeText(ExerciseActivity.this, "OK" + hourOfDay + minute, Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+        }, hour, minute, true);
+        timePickerDialog.show();
     }
 
     private void detailDialog(ExerciseTable exerciseTable,int recipenum){
