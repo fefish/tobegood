@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +31,25 @@ public class HelpActivity extends AppCompatActivity {
         setToolbar(data);
         setBottomBar(data);
         initialPage(data);
+        Button_help_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDao userDao = new UserDao(HelpActivity.this);
+                User user = userDao.getUserById(data);
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + user.getEmergencynumber()));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        Intent intent_getfrompre = getIntent();
+        int data = intent_getfrompre.getIntExtra("usee", 0);
+        initialPage(data);
+    }
     private void setToolbar(int data) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,7 +66,7 @@ public class HelpActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(HelpActivity.this);
         User user = userDao.getUserById(data);
         toolbar.setTitle("tobegood");
-        toolbar.setSubtitle("Welcome, " + user.getName() + "! You can change your personal details.");
+        toolbar.setSubtitle("Welcome, " + user.getName() + "! You can call for help.");
         toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }
