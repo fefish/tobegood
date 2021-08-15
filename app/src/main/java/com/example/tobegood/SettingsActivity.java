@@ -134,6 +134,7 @@ public class SettingsActivity extends AppCompatActivity {
         EditText edit_register_password = (EditText) findViewById(R.id.Edit_register_password);
         EditText edit_register_height = (EditText) findViewById(R.id.Edit_register_height);
         EditText edit_register_weight = (EditText) findViewById(R.id.Edit_register_weight);
+        EditText edit_register_contactnumber = (EditText) findViewById(R.id.Edit_register_contactnumber);
         RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
@@ -142,6 +143,7 @@ public class SettingsActivity extends AppCompatActivity {
         edit_register_name.setText(user.getName());
         edit_register_height.setText((int) user.getHeight() + "");
         edit_register_weight.setText((int) user.getWeight() + "");
+        edit_register_contactnumber.setText(user.getEmergencynumber());
         if (user.isSex()) {
             radioGroup_register_sex.check(R.id.Radiobutton_register_male);
         } else {
@@ -165,6 +167,7 @@ public class SettingsActivity extends AppCompatActivity {
         EditText edit_register_password = (EditText) findViewById(R.id.Edit_register_password);
         EditText edit_register_height = (EditText) findViewById(R.id.Edit_register_height);
         EditText edit_register_weight = (EditText) findViewById(R.id.Edit_register_weight);
+        EditText edit_register_contactnumber = (EditText) findViewById(R.id.Edit_register_contactnumber);
         User user = new User();
         user.setId(Integer.parseInt(edit_register_id.getText().toString()));
         user.setName(edit_register_name.getText().toString());
@@ -175,6 +178,7 @@ public class SettingsActivity extends AppCompatActivity {
         user.setVegan(myVegan);
         user.setEatdisorder(myEatDisorder);
         user.setLastday(1);
+        user.setEmergencynumber(edit_register_contactnumber.getText().toString());
         return user;
     }
 

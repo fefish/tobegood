@@ -112,6 +112,7 @@ public class Register extends AppCompatActivity  {
         EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
         EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
         EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
+        EditText edit_register_contactnumber = (EditText)findViewById(R.id.Edit_register_contactnumber);
         User user = new User();
         user.setId(Integer.parseInt(edit_register_id.getText().toString()));
         user.setName(edit_register_name.getText().toString());
@@ -121,6 +122,7 @@ public class Register extends AppCompatActivity  {
         user.setSex(mySex);
         user.setVegan(myVegan);
         user.setEatdisorder(myEatDisorder);
+        user.setEmergencynumber(edit_register_contactnumber.getText().toString());
         user.setLastday(1);
         return  user;
     }

@@ -273,13 +273,39 @@
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/Text_register_contactnumber"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:text="Emergency contact number"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/Edit_register_contactnumber"
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_eatdisorder" />
+
+    <EditText
+        android:id="@+id/Edit_register_contactnumber"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        app:layout_constraintHorizontal_weight="70"
+        app:layout_constraintLeft_toRightOf="@id/Text_register_contactnumber"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup_register_eatdisorder"
+        android:inputType="number"
+        android:hint="please input contact number" />
+
+
     <Button
         android:id="@+id/Button_register_register"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Text_register_eatdisorder"
+        app:layout_constraintTop_toBottomOf="@id/Text_register_contactnumber"
         android:text="submit"/>
 
 

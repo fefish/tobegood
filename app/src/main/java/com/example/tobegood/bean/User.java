@@ -35,11 +35,14 @@ public class User {
 
     @DatabaseField(columnName = "lastday")
     private int lastday;
+
+    @DatabaseField(columnName = "emergencynumber")
+    private String emergencynumber;
     //空构造
     public User(){
     }
 
-    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder, int lastday) {
+    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder, int lastday, String emergencynumber) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -49,6 +52,15 @@ public class User {
         this.weight = weight;
         this.eatdisorder = eatdisorder;
         this.lastday = lastday;
+        this.emergencynumber = emergencynumber;
+    }
+
+    public String getEmergencynumber() {
+        return emergencynumber;
+    }
+
+    public void setEmergencynumber(String emergencynumber) {
+        this.emergencynumber = emergencynumber;
     }
 
     public int getId() {
@@ -122,6 +134,8 @@ public class User {
     public void setLastday(int lastday) {
         this.lastday = lastday;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
