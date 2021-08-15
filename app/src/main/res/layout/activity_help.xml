@@ -95,7 +95,7 @@
 
         <ImageButton
             android:id="@+id/bottom_exercise"
-            android:src="@drawable/bottomsettingsicon"
+            android:src="@drawable/bottomexerciseicon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintLeft_toRightOf="@id/bottom_eat"
@@ -125,7 +125,7 @@
             android:id="@+id/bottom_help"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/buttomicon"
+            android:src="@drawable/bottomsettingsicon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintHorizontal_weight="30"

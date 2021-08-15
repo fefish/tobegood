@@ -44,12 +44,14 @@ public class HelpActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Intent intent_getfrompre = getIntent();
-        int data = intent_getfrompre.getIntExtra("usee", 0);
+        int data = intent_getfrompre.getIntExtra(
+                "usee", 0);
         initialPage(data);
     }
+
     private void setToolbar(int data) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,7 +112,7 @@ public class HelpActivity extends AppCompatActivity {
         });
     }
 
-    private void initialPage(int data){
+    private void initialPage(int data) {
         TextView Text_help_number = (TextView) findViewById(R.id.Text_help_number);
         UserDao userDao = new UserDao(HelpActivity.this);
         User user = userDao.getUserById(data);

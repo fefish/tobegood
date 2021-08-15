@@ -4,10 +4,11 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Objects;
+
 @DatabaseTable(tableName = "UserPlan_info")
 
 public class UserPlan {
-    @DatabaseField(columnName = "id",id = true)
+    @DatabaseField(columnName = "id", id = true)
     private String id;
 
     @DatabaseField(columnName = "RecipeId")
@@ -34,7 +35,7 @@ public class UserPlan {
     @DatabaseField(columnName = "ThirdExerciseComplete")
     private Boolean ThirdExerciseComplete;
 
-    public UserPlan(){
+    public UserPlan() {
     }
 
     public UserPlan(String id, int recipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {

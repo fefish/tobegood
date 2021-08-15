@@ -38,8 +38,9 @@ public class User {
 
     @DatabaseField(columnName = "emergencynumber")
     private String emergencynumber;
+
     //空构造
-    public User(){
+    public User() {
     }
 
     public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder, int lastday, String emergencynumber) {
@@ -136,7 +137,6 @@ public class User {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,12 +150,13 @@ public class User {
                 isEatdisorder() == user.isEatdisorder() &&
                 getLastday() == user.getLastday() &&
                 getName().equals(user.getName()) &&
-                getPassword().equals(user.getPassword());
+                getPassword().equals(user.getPassword()) &&
+                getEmergencynumber().equals(user.getEmergencynumber());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getPassword(), isSex(), isVegan(), getHeight(), getWeight(), isEatdisorder(), getLastday());
+        return Objects.hash(getId(), getName(), getPassword(), isSex(), isVegan(), getHeight(), getWeight(), isEatdisorder(), getLastday(), getEmergencynumber());
     }
 
     @Override
@@ -170,6 +171,7 @@ public class User {
                 ", weight=" + weight +
                 ", eatdisorder=" + eatdisorder +
                 ", lastday=" + lastday +
+                ", emergencynumber='" + emergencynumber + '\'' +
                 '}';
     }
 }

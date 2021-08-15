@@ -21,28 +21,30 @@ import com.example.tobegood.dao.UserDao;
 import com.example.tobegood.dao.*;
 import com.example.tobegood.bean.*;
 import com.example.tobegood.bean.User;
+
 import android.widget.Toast;
 
-public class Register extends AppCompatActivity  {
+public class Register extends AppCompatActivity {
     private boolean mySex = false;
     private boolean myVegan = true;
     private boolean myEatDisorder = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setToolbar();
         initialPage();
         Button button_register_register = (Button) findViewById(R.id.Button_register_register);
-        RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
-        RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
-        RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
-        radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+        RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
+        RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
+        RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkId) {
-                switch (checkId){
+                switch (checkId) {
                     case R.id.Radiobutton_register_male:
                         mySex = true;
                         break;
@@ -50,11 +52,14 @@ public class Register extends AppCompatActivity  {
                         mySex = false;
                         break;
                     default:
-                        break; }}});
-        radioGroup_register_vegan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                        break;
+                }
+            }
+        });
+        radioGroup_register_vegan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkId) {
-                switch (checkId){
+                switch (checkId) {
                     case R.id.Radiobutton_register_vegan:
                         myVegan = true;
                         break;
@@ -62,11 +67,14 @@ public class Register extends AppCompatActivity  {
                         myVegan = false;
                         break;
                     default:
-                        break; }}});
-        radioGroup_register_eatdisorder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+                        break;
+                }
+            }
+        });
+        radioGroup_register_eatdisorder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkId) {
-                switch (checkId){
+                switch (checkId) {
                     case R.id.Radiobutton_register_eatdisorder:
                         myEatDisorder = true;
                         break;
@@ -74,17 +82,20 @@ public class Register extends AppCompatActivity  {
                         myEatDisorder = false;
                         break;
                     default:
-                        break; }}});
+                        break;
+                }
+            }
+        });
         button_register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                                UserDao userDao = new UserDao(Register.this);
+                UserDao userDao = new UserDao(Register.this);
                 User user = getUser();
-                if(findEmpty()){
-                    Toast.makeText(getApplicationContext(),"Please fill up all the information, thank you.",Toast.LENGTH_SHORT).show();
-                }else if(userDao.getUserById(user.getId())!= null){
-                    Toast.makeText(getApplicationContext(),"There is already a same id in the database, please change one.",Toast.LENGTH_SHORT).show();
-                }else{
+                if (findEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please fill up all the information, thank you.", Toast.LENGTH_SHORT).show();
+                } else if (userDao.getUserById(user.getId()) != null) {
+                    Toast.makeText(getApplicationContext(), "There is already a same id in the database, please change one.", Toast.LENGTH_SHORT).show();
+                } else {
                     userDao.add(user);
                     setUserPlan(user.getId());
                     Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString(),
@@ -95,24 +106,25 @@ public class Register extends AppCompatActivity  {
                     startActivity(intent_toMainPage);
                 }
             }
-    });
+        });
     }
 
-    private void initialPage(){
-        RadioGroup radioGroup_register_sex=(RadioGroup)findViewById(R.id.RadioGroup_register_sex);
-        RadioGroup radioGroup_register_vegan=(RadioGroup)findViewById(R.id.RadioGroup_register_vegan);
-        RadioGroup radioGroup_register_eatdisorder= (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+    private void initialPage() {
+        RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
+        RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
+        RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
         radioGroup_register_sex.check(R.id.Radiobutton_register_male);
         radioGroup_register_vegan.check(R.id.Radiobutton_register_vegan);
         radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
     }
-    private User getUser(){
-        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
-        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
-        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
-        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
-        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
-        EditText edit_register_contactnumber = (EditText)findViewById(R.id.Edit_register_contactnumber);
+
+    private User getUser() {
+        EditText edit_register_id = (EditText) findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText) findViewById(R.id.Edit_register_name);
+        EditText edit_register_password = (EditText) findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText) findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight = (EditText) findViewById(R.id.Edit_register_weight);
+        EditText edit_register_contactnumber = (EditText) findViewById(R.id.Edit_register_contactnumber);
         User user = new User();
         user.setId(Integer.parseInt(edit_register_id.getText().toString()));
         user.setName(edit_register_name.getText().toString());
@@ -124,149 +136,149 @@ public class Register extends AppCompatActivity  {
         user.setEatdisorder(myEatDisorder);
         user.setEmergencynumber(edit_register_contactnumber.getText().toString());
         user.setLastday(1);
-        return  user;
+        return user;
     }
 
-    private void initialTable(){
-        EatTable eatTable1= new EatTable(1,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe002",
-                "EatTable1Name2","EatTable1Name3","recipe003",
+    private void initialTable() {
+        EatTable eatTable1 = new EatTable(1, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe002",
+                "EatTable1Name2", "EatTable1Name3", "recipe003",
                 "EatTable1Name3");
-        EatTable eatTable2= new EatTable(2,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable2 = new EatTable(2, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable3= new EatTable(3,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable3 = new EatTable(3, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable4= new EatTable(4,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable4 = new EatTable(4, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable5= new EatTable(5,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable5 = new EatTable(5, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
-        EatTable eatTable6= new EatTable(6,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe001",
-                "EatTable1Name2","EatTable1Name3","recipe001",
+        EatTable eatTable6 = new EatTable(6, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe001",
+                "EatTable1Name2", "EatTable1Name3", "recipe001",
                 "EatTable1Name3");
-        EatTable eatTable7= new EatTable(7,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable7 = new EatTable(7, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable8= new EatTable(8,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable8 = new EatTable(8, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable9= new EatTable(9,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable9 = new EatTable(9, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable10= new EatTable(10,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable10 = new EatTable(10, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
-        EatTable eatTable11= new EatTable(11,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe001",
-                "EatTable1Name2","EatTable1Name3","recipe001",
+        EatTable eatTable11 = new EatTable(11, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe001",
+                "EatTable1Name2", "EatTable1Name3", "recipe001",
                 "EatTable1Name3");
-        EatTable eatTable12= new EatTable(12,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable12 = new EatTable(12, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable13= new EatTable(13,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable13 = new EatTable(13, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable14= new EatTable(14,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable14 = new EatTable(14, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable15= new EatTable(15,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable15 = new EatTable(15, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
-        EatTable eatTable16= new EatTable(16,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe001",
-                "EatTable1Name2","EatTable1Name3","recipe001",
+        EatTable eatTable16 = new EatTable(16, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe001",
+                "EatTable1Name2", "EatTable1Name3", "recipe001",
                 "EatTable1Name3");
-        EatTable eatTable17= new EatTable(17,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable17 = new EatTable(17, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable18 = new EatTable(18,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable18 = new EatTable(18, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable19= new EatTable(19,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable19 = new EatTable(19, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable20= new EatTable(20,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable20 = new EatTable(20, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
-        EatTable eatTable21= new EatTable(21,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe001",
-                "EatTable1Name2","EatTable1Name3","recipe001",
+        EatTable eatTable21 = new EatTable(21, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe001",
+                "EatTable1Name2", "EatTable1Name3", "recipe001",
                 "EatTable1Name3");
-        EatTable eatTable22= new EatTable(22,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable22 = new EatTable(22, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable23= new EatTable(23,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable23 = new EatTable(23, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable24= new EatTable(24,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable24 = new EatTable(24, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable25= new EatTable(25,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable25 = new EatTable(25, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
-        EatTable eatTable26= new EatTable(26,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe001",
-                "EatTable1Name2","EatTable1Name3","recipe001",
+        EatTable eatTable26 = new EatTable(26, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe001",
+                "EatTable1Name2", "EatTable1Name3", "recipe001",
                 "EatTable1Name3");
-        EatTable eatTable27= new EatTable(27,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable27 = new EatTable(27, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable28= new EatTable(28,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable28 = new EatTable(28, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable29= new EatTable(29,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable29 = new EatTable(29, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable30= new EatTable(30,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable30 = new EatTable(30, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
-        EatTable eatTable31= new EatTable(31,"EatTable1Name1","recipe001",
-                "EatTable1Name1","EatTable1Name2","recipe001",
-                "EatTable1Name2","EatTable1Name3","recipe001",
+        EatTable eatTable31 = new EatTable(31, "EatTable1Name1", "recipe001",
+                "EatTable1Name1", "EatTable1Name2", "recipe001",
+                "EatTable1Name2", "EatTable1Name3", "recipe001",
                 "EatTable1Name3");
-        EatTable eatTable32= new EatTable(32,"EatTable2Name1","recipe002",
-                "EatTable2Name1","EatTable2Name2","recipe002",
-                "EatTable2Name2","EatTable2Name3","recipe002",
+        EatTable eatTable32 = new EatTable(32, "EatTable2Name1", "recipe002",
+                "EatTable2Name1", "EatTable2Name2", "recipe002",
+                "EatTable2Name2", "EatTable2Name3", "recipe002",
                 "EatTable2Name3");
-        EatTable eatTable33= new EatTable(33,"EatTable3Name1","recipe003",
-                "EatTable3Name1","EatTable3Name2","recipe003",
-                "EatTable3Name2","EatTable3Name3","recipe003",
+        EatTable eatTable33 = new EatTable(33, "EatTable3Name1", "recipe003",
+                "EatTable3Name1", "EatTable3Name2", "recipe003",
+                "EatTable3Name2", "EatTable3Name3", "recipe003",
                 "EatTable3Name3");
-        EatTable eatTable34= new EatTable(34,"EatTable4Name1","recipe004",
-                "EatTable4Name1","EatTable4Name2","recipe004",
-                "EatTable4Name2","EatTable4Name3","recipe004",
+        EatTable eatTable34 = new EatTable(34, "EatTable4Name1", "recipe004",
+                "EatTable4Name1", "EatTable4Name2", "recipe004",
+                "EatTable4Name2", "EatTable4Name3", "recipe004",
                 "EatTable4Name3");
-        EatTable eatTable35= new EatTable(35,"EatTable5Name1","recipe005",
-                "EatTable5Name1","EatTable5Name2","recipe005",
-                "EatTable5Name2","EatTable5Name3","recipe005",
+        EatTable eatTable35 = new EatTable(35, "EatTable5Name1", "recipe005",
+                "EatTable5Name1", "EatTable5Name2", "recipe005",
+                "EatTable5Name2", "EatTable5Name3", "recipe005",
                 "EatTable5Name3");
 
         EatTableDao eatTableDao = new EatTableDao(Register.this);
@@ -306,145 +318,145 @@ public class Register extends AppCompatActivity  {
         eatTableDao.add(eatTable34);
         eatTableDao.add(eatTable35);
         // Log.d("222", eatTable222.getRecipeOnePic());
-        ExerciseTable exerciseTable1= new ExerciseTable(1,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable1 = new ExerciseTable(1, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable2= new ExerciseTable(2,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable2 = new ExerciseTable(2, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable3= new ExerciseTable(3,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable3 = new ExerciseTable(3, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable4= new ExerciseTable(4,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable4 = new ExerciseTable(4, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable5= new ExerciseTable(5,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable5 = new ExerciseTable(5, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
-        ExerciseTable exerciseTable6= new ExerciseTable(6,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable6 = new ExerciseTable(6, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable7= new ExerciseTable(7,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable7 = new ExerciseTable(7, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable8= new ExerciseTable(8,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable8 = new ExerciseTable(8, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable9= new ExerciseTable(9,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable9 = new ExerciseTable(9, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable10= new ExerciseTable(10,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable10 = new ExerciseTable(10, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
-        ExerciseTable exerciseTable11= new ExerciseTable(11,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable11 = new ExerciseTable(11, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable12= new ExerciseTable(12,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable12 = new ExerciseTable(12, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable13= new ExerciseTable(13,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable13 = new ExerciseTable(13, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable14= new ExerciseTable(14,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable14 = new ExerciseTable(14, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable15= new ExerciseTable(15,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable15 = new ExerciseTable(15, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
-        ExerciseTable exerciseTable16= new ExerciseTable(16,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable16 = new ExerciseTable(16, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable17= new ExerciseTable(17,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable17 = new ExerciseTable(17, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable18= new ExerciseTable(18,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable18 = new ExerciseTable(18, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable19= new ExerciseTable(19,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable19 = new ExerciseTable(19, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable20= new ExerciseTable(20,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable20 = new ExerciseTable(20, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
-        ExerciseTable exerciseTable21= new ExerciseTable(21,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable21 = new ExerciseTable(21, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable22= new ExerciseTable(22,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable22 = new ExerciseTable(22, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable23= new ExerciseTable(23,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable23 = new ExerciseTable(23, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable24= new ExerciseTable(24,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable24 = new ExerciseTable(24, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable25= new ExerciseTable(25,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable25 = new ExerciseTable(25, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
-        ExerciseTable exerciseTable26= new ExerciseTable(26,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable26 = new ExerciseTable(26, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable27= new ExerciseTable(27,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable27 = new ExerciseTable(27, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable28= new ExerciseTable(28,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable28 = new ExerciseTable(28, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable29= new ExerciseTable(29,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable29 = new ExerciseTable(29, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable30= new ExerciseTable(30,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable30 = new ExerciseTable(30, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
-        ExerciseTable exerciseTable31= new ExerciseTable(31,"ExerciseTable1Name1","recipe001",
-                "ExerciseTable1Name1","ExerciseTable1Name2","recipe001",
-                "ExerciseTable1Name2","ExerciseTable1Name3","recipe001",
+        ExerciseTable exerciseTable31 = new ExerciseTable(31, "ExerciseTable1Name1", "recipe001",
+                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
+                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable32= new ExerciseTable(32,"ExerciseTable2Name1","recipe002",
-                "ExerciseTable2Name1","ExerciseTable2Name2","recipe002",
-                "ExerciseTable2Name2","ExerciseTable2Name3","recipe002",
+        ExerciseTable exerciseTable32 = new ExerciseTable(32, "ExerciseTable2Name1", "recipe002",
+                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
+                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
                 "EatTable2Name3");
-        ExerciseTable exerciseTable33= new ExerciseTable(33,"ExerciseTable3Name1","recipe003",
-                "ExerciseTable3Name1","ExerciseTable3Name2","recipe003",
-                "ExerciseTable3Name2","ExerciseTable3Name3","recipe003",
+        ExerciseTable exerciseTable33 = new ExerciseTable(33, "ExerciseTable3Name1", "recipe003",
+                "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
+                "ExerciseTable3Name2", "ExerciseTable3Name3", "recipe003",
                 "ExerciseTable3Name3");
-        ExerciseTable exerciseTable34= new ExerciseTable(34,"ExerciseTable4Name1","recipe004",
-                "ExerciseTable4Name1","ExerciseTable4Name2","recipe004",
-                "ExerciseTable4Name2","ExerciseTable4Name3","recipe004",
+        ExerciseTable exerciseTable34 = new ExerciseTable(34, "ExerciseTable4Name1", "recipe004",
+                "ExerciseTable4Name1", "ExerciseTable4Name2", "recipe004",
+                "ExerciseTable4Name2", "ExerciseTable4Name3", "recipe004",
                 "ExerciseTable4Name3");
-        ExerciseTable exerciseTable35= new ExerciseTable(35,"ExerciseTable5Name1","recipe005",
-                "ExerciseTable5Name1","ExerciseTable5Name2","recipe005",
-                "ExerciseTable5Name2","ExerciseTable5Name3","recipe005",
+        ExerciseTable exerciseTable35 = new ExerciseTable(35, "ExerciseTable5Name1", "recipe005",
+                "ExerciseTable5Name1", "ExerciseTable5Name2", "recipe005",
+                "ExerciseTable5Name2", "ExerciseTable5Name3", "recipe005",
                 "ExerciseTable5Name3");
         ExerciseTableDao exerciseTableDao = new ExerciseTableDao(Register.this);
         exerciseTableDao.add(exerciseTable1);
@@ -484,8 +496,8 @@ public class Register extends AppCompatActivity  {
         exerciseTableDao.add(exerciseTable35);
     }
 
-    private  void setToolbar(){
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -503,7 +515,7 @@ public class Register extends AppCompatActivity  {
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }
 
-    private void setUserPlan(int id){
+    private void setUserPlan(int id) {
         UserDao userDao = new UserDao(Register.this);
         User user = userDao.getUserById(id);
         /*set userplan*/
@@ -525,13 +537,13 @@ public class Register extends AppCompatActivity  {
         Log.d("rerere", "onClick: " + userPlan1.toString());
     }
 
-    public boolean findEmpty(){
-        EditText edit_register_id=(EditText)findViewById(R.id.Edit_register_id);
-        EditText edit_register_name = (EditText)findViewById(R.id.Edit_register_name);
-        EditText edit_register_password=(EditText)findViewById(R.id.Edit_register_password);
-        EditText edit_register_height = (EditText)findViewById(R.id.Edit_register_height);
-        EditText edit_register_weight=(EditText)findViewById(R.id.Edit_register_weight);
-        boolean findempty = TextUtils.isEmpty(edit_register_id.getText())||TextUtils.isEmpty(edit_register_name.getText())||TextUtils.isEmpty(edit_register_password.getText())||TextUtils.isEmpty(edit_register_height.getText())||TextUtils.isEmpty(edit_register_weight.getText());
+    public boolean findEmpty() {
+        EditText edit_register_id = (EditText) findViewById(R.id.Edit_register_id);
+        EditText edit_register_name = (EditText) findViewById(R.id.Edit_register_name);
+        EditText edit_register_password = (EditText) findViewById(R.id.Edit_register_password);
+        EditText edit_register_height = (EditText) findViewById(R.id.Edit_register_height);
+        EditText edit_register_weight = (EditText) findViewById(R.id.Edit_register_weight);
+        boolean findempty = TextUtils.isEmpty(edit_register_id.getText()) || TextUtils.isEmpty(edit_register_name.getText()) || TextUtils.isEmpty(edit_register_password.getText()) || TextUtils.isEmpty(edit_register_height.getText()) || TextUtils.isEmpty(edit_register_weight.getText());
         return findempty;
     }
 }

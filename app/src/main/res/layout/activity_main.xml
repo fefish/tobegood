@@ -33,7 +33,6 @@
         app:layout_constraintHeight_percent="0.2"
 
         />
-    <!-- 首页面顶上的图片，一个welcome图片-->
 
     <Button
         android:id="@+id/button_first_choice_login"
