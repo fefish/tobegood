@@ -67,7 +67,7 @@ public class EatActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(EatActivity.this);
         User user = userDao.getUserById(data);
         UserPlanDao userPlanDao = new UserPlanDao(EatActivity.this);
-        UserPlan userPlan = userPlanDao.getUserPlanById(data + "" + user.getLastday());
+        UserPlan userPlan = userPlanDao.getUserPlanById(data + "" + user.getLastDay());
         EatTableDao eatTableDao = new EatTableDao(EatActivity.this);
         EatTable eatTable = eatTableDao.getEatTableById(userPlan.getRecipeId());
 
@@ -119,7 +119,7 @@ public class EatActivity extends AppCompatActivity {
     private void setToolbar(int id) {
         UserDao userDao = new UserDao(EatActivity.this);
         User user = userDao.getUserById(id);
-        int today = user.getLastday();
+        int today = user.getLastDay();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("tobegood");
@@ -155,7 +155,7 @@ public class EatActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(EatActivity.this);
         User user = userDao.getUserById(id);
         UserPlanDao userPlanDao = new UserPlanDao(EatActivity.this);
-        int today = user.getLastday();
+        int today = user.getLastDay();
         UserPlan userPlan = userPlanDao.getUserPlanById(id + "" + today);
         EatTableDao eatTableDao = new EatTableDao(EatActivity.this);
         EatTable eatTable = eatTableDao.getEatTableById(userPlan.getRecipeId());
@@ -191,7 +191,7 @@ public class EatActivity extends AppCompatActivity {
     private void updateToday(int id, int today) {
         UserDao userDao = new UserDao(EatActivity.this);
         User user = userDao.getUserById(id);
-        user.setLastday(today);
+        user.setLastDay(today);
         userDao.update(user);
     }
 
@@ -199,7 +199,7 @@ public class EatActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(EatActivity.this);
         User user = userDao.getUserById(id);
         UserPlanDao userPlanDao = new UserPlanDao(EatActivity.this);
-        UserPlan userPlan = userPlanDao.getUserPlanById(id + "" + user.getLastday());
+        UserPlan userPlan = userPlanDao.getUserPlanById(id + "" + user.getLastDay());
         EatTableDao eatTableDao = new EatTableDao(EatActivity.this);
         EatTable eatTable = eatTableDao.getEatTableById(userPlan.getRecipeId());
         switch (num) {

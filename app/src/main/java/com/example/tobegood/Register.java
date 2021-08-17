@@ -155,8 +155,8 @@ public class Register extends AppCompatActivity {
         user.setSex(mySex);
         user.setVegan(myVegan);
         user.setEatdisorder(myEatDisorder);
-        user.setEmergencynumber(edit_register_contactnumber.getText().toString());
-        user.setLastday(1);
+        user.setEmergencyNumber(edit_register_contactnumber.getText().toString());
+        user.setLastDay(1);
         user.setPurpose(myPurpose);
         return user;
     }

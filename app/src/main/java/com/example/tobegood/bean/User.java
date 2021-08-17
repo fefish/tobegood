@@ -34,10 +34,10 @@ public class User {
     //是否需要饮食障碍帮助
 
     @DatabaseField(columnName = "lastday")
-    private int lastday;
+    private int lastDay;
 
     @DatabaseField(columnName = "emergencynumber")
-    private String emergencynumber;
+    private String emergencyNumber;
 
     @DatabaseField(columnName = "purpose")
     private int purpose;
@@ -46,7 +46,7 @@ public class User {
     }
 
 
-    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatdisorder, int lastday, String emergencynumber, int purpose) {
+    public User(int id, String name, String password, boolean sex, boolean vegan, float height, float weight, boolean eatingDisorder, int lastDay, String emergencyNumber, int purpose) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -54,9 +54,9 @@ public class User {
         this.vegan = vegan;
         this.height = height;
         this.weight = weight;
-        this.eatdisorder = eatdisorder;
-        this.lastday = lastday;
-        this.emergencynumber = emergencynumber;
+        this.eatdisorder = eatingDisorder;
+        this.lastDay = lastDay;
+        this.emergencyNumber = emergencyNumber;
         this.purpose = purpose;
     }
 
@@ -65,15 +65,16 @@ public class User {
     }
 
     public void setPurpose(int purpose) {
+
         this.purpose = purpose;
     }
 
-    public String getEmergencynumber() {
-        return emergencynumber;
+    public String getEmergencyNumber() {
+        return emergencyNumber;
     }
 
-    public void setEmergencynumber(String emergencynumber) {
-        this.emergencynumber = emergencynumber;
+    public void setEmergencyNumber(String emergencyNumber) {
+        this.emergencyNumber = emergencyNumber;
     }
 
     public int getId() {
@@ -140,12 +141,12 @@ public class User {
         this.eatdisorder = eatdisorder;
     }
 
-    public int getLastday() {
-        return lastday;
+    public int getLastDay() {
+        return lastDay;
     }
 
-    public void setLastday(int lastday) {
-        this.lastday = lastday;
+    public void setLastDay(int lastDay) {
+        this.lastDay = lastDay;
     }
 
 
@@ -160,15 +161,15 @@ public class User {
                 Float.compare(user.getHeight(), getHeight()) == 0 &&
                 Float.compare(user.getWeight(), getWeight()) == 0 &&
                 isEatdisorder() == user.isEatdisorder() &&
-                getLastday() == user.getLastday() &&
+                getLastDay() == user.getLastDay() &&
                 getName().equals(user.getName()) &&
                 getPassword().equals(user.getPassword()) &&
-                getEmergencynumber().equals(user.getEmergencynumber());
+                getEmergencyNumber().equals(user.getEmergencyNumber());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getPassword(), isSex(), isVegan(), getHeight(), getWeight(), isEatdisorder(), getLastday(), getEmergencynumber());
+        return Objects.hash(getId(), getName(), getPassword(), isSex(), isVegan(), getHeight(), getWeight(), isEatdisorder(), getLastDay(), getEmergencyNumber());
     }
 
     @Override
@@ -182,8 +183,8 @@ public class User {
                 ", height=" + height +
                 ", weight=" + weight +
                 ", eatdisorder=" + eatdisorder +
-                ", lastday=" + lastday +
-                ", emergencynumber='" + emergencynumber + '\'' +
+                ", lastday=" + lastDay +
+                ", emergencynumber='" + emergencyNumber + '\'' +
                 '}';
     }
 }

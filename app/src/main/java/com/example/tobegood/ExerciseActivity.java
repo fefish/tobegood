@@ -56,7 +56,7 @@ public class ExerciseActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(data);
         UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
-        UserPlan userPlan = userPlanDao.getUserPlanById(data+""+user.getLastday());
+        UserPlan userPlan = userPlanDao.getUserPlanById(data+""+user.getLastDay());
         ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
         ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
 
@@ -100,7 +100,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private void setToolbar(int id){
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(id);
-        int today = user.getLastday();
+        int today = user.getLastDay();
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("tobegood");
@@ -136,7 +136,7 @@ public class ExerciseActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(id);
         UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
-        int today = user.getLastday();
+        int today = user.getLastDay();
         UserPlan userPlan = userPlanDao.getUserPlanById(id+""+today);
         ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
         ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
@@ -169,7 +169,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private void updateToday(int id, int today){
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(id);
-        user.setLastday(today);
+        user.setLastDay(today);
         userDao.update(user);
     }
 
@@ -177,7 +177,7 @@ public class ExerciseActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(ExerciseActivity.this);
         User user = userDao.getUserById(id);
         UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
-        UserPlan userPlan = userPlanDao.getUserPlanById(id+""+user.getLastday());
+        UserPlan userPlan = userPlanDao.getUserPlanById(id+""+user.getLastDay());
         ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
         ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
         switch (num){

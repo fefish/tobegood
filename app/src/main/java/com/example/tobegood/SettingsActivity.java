@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,8 +18,6 @@ import android.widget.ImageButton;
 import android.widget.RadioGroup;
 
 import com.example.tobegood.dao.UserDao;
-import com.example.tobegood.dao.*;
-import com.example.tobegood.bean.*;
 import com.example.tobegood.bean.User;
 
 import android.widget.Toast;
@@ -143,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity {
         edit_register_name.setText(user.getName());
         edit_register_height.setText((int) user.getHeight() + "");
         edit_register_weight.setText((int) user.getWeight() + "");
-        edit_register_contactnumber.setText(user.getEmergencynumber());
+        edit_register_contactnumber.setText(user.getEmergencyNumber());
         if (user.isSex()) {
             radioGroup_register_sex.check(R.id.Radiobutton_register_male);
         } else {
@@ -177,8 +174,8 @@ public class SettingsActivity extends AppCompatActivity {
         user.setSex(mySex);
         user.setVegan(myVegan);
         user.setEatdisorder(myEatDisorder);
-        user.setLastday(1);
-        user.setEmergencynumber(edit_register_contactnumber.getText().toString());
+        user.setLastDay(1);
+        user.setEmergencyNumber(edit_register_contactnumber.getText().toString());
         return user;
     }
 

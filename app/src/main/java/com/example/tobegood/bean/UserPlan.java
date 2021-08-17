@@ -15,36 +15,36 @@ public class UserPlan {
     private int RecipeId;
 
     @DatabaseField(columnName = "FirstRecipeComplete")
-    private Boolean FirstRecipeComplete;
+    private boolean FirstRecipeComplete;
 
     @DatabaseField(columnName = "SecondRecipeComplete")
-    private Boolean SecondRecipeComplete;
+    private boolean SecondRecipeComplete;
 
     @DatabaseField(columnName = "ThirdRecipeComplete")
-    private Boolean ThirdRecipeComplete;
+    private boolean ThirdRecipeComplete;
 
     @DatabaseField(columnName = "ExerciseId")
-    private int FirstExerciseId;
+    private int ExerciseId;
 
     @DatabaseField(columnName = "FirstExerciseComplete")
-    private Boolean FirstExerciseComplete;
+    private boolean FirstExerciseComplete;
 
     @DatabaseField(columnName = "SecondExerciseComplete")
-    private Boolean SecondExerciseComplete;
+    private boolean SecondExerciseComplete;
 
     @DatabaseField(columnName = "ThirdExerciseComplete")
-    private Boolean ThirdExerciseComplete;
+    private boolean ThirdExerciseComplete;
 
     public UserPlan() {
     }
 
-    public UserPlan(String id, int recipeId, Boolean firstRecipeComplete, Boolean secondRecipeComplete, Boolean thirdRecipeComplete, int firstExerciseId, Boolean firstExerciseComplete, Boolean secondExerciseComplete, Boolean thirdExerciseComplete) {
+    public UserPlan(String id, int recipeId, boolean firstRecipeComplete, boolean secondRecipeComplete, boolean thirdRecipeComplete, int exerciseId, boolean firstExerciseComplete, boolean secondExerciseComplete, boolean thirdExerciseComplete) {
         this.id = id;
         RecipeId = recipeId;
         FirstRecipeComplete = firstRecipeComplete;
         SecondRecipeComplete = secondRecipeComplete;
         ThirdRecipeComplete = thirdRecipeComplete;
-        FirstExerciseId = firstExerciseId;
+        ExerciseId = exerciseId;
         FirstExerciseComplete = firstExerciseComplete;
         SecondExerciseComplete = secondExerciseComplete;
         ThirdExerciseComplete = thirdExerciseComplete;
@@ -66,59 +66,59 @@ public class UserPlan {
         RecipeId = recipeId;
     }
 
-    public Boolean getFirstRecipeComplete() {
+    public boolean getFirstRecipeComplete() {
         return FirstRecipeComplete;
     }
 
-    public void setFirstRecipeComplete(Boolean firstRecipeComplete) {
+    public void setFirstRecipeComplete(boolean firstRecipeComplete) {
         FirstRecipeComplete = firstRecipeComplete;
     }
 
-    public Boolean getSecondRecipeComplete() {
+    public boolean getSecondRecipeComplete() {
         return SecondRecipeComplete;
     }
 
-    public void setSecondRecipeComplete(Boolean secondRecipeComplete) {
+    public void setSecondRecipeComplete(boolean secondRecipeComplete) {
         SecondRecipeComplete = secondRecipeComplete;
     }
 
-    public Boolean getThirdRecipeComplete() {
+    public boolean getThirdRecipeComplete() {
         return ThirdRecipeComplete;
     }
 
-    public void setThirdRecipeComplete(Boolean thirdRecipeComplete) {
+    public void setThirdRecipeComplete(boolean thirdRecipeComplete) {
         ThirdRecipeComplete = thirdRecipeComplete;
     }
 
-    public int getFirstExerciseId() {
-        return FirstExerciseId;
+    public int getExerciseId() {
+        return ExerciseId;
     }
 
-    public void setFirstExerciseId(int firstExerciseId) {
-        FirstExerciseId = firstExerciseId;
+    public void setExerciseId(int exerciseId) {
+        ExerciseId = exerciseId;
     }
 
-    public Boolean getFirstExerciseComplete() {
+    public boolean getFirstExerciseComplete() {
         return FirstExerciseComplete;
     }
 
-    public void setFirstExerciseComplete(Boolean firstExerciseComplete) {
+    public void setFirstExerciseComplete(boolean firstExerciseComplete) {
         FirstExerciseComplete = firstExerciseComplete;
     }
 
-    public Boolean getSecondExerciseComplete() {
+    public boolean getSecondExerciseComplete() {
         return SecondExerciseComplete;
     }
 
-    public void setSecondExerciseComplete(Boolean secondExerciseComplete) {
+    public void setSecondExerciseComplete(boolean secondExerciseComplete) {
         SecondExerciseComplete = secondExerciseComplete;
     }
 
-    public Boolean getThirdExerciseComplete() {
+    public boolean getThirdExerciseComplete() {
         return ThirdExerciseComplete;
     }
 
-    public void setThirdExerciseComplete(Boolean thirdExerciseComplete) {
+    public void setThirdExerciseComplete(boolean thirdExerciseComplete) {
         ThirdExerciseComplete = thirdExerciseComplete;
     }
 
@@ -128,19 +128,19 @@ public class UserPlan {
         if (!(o instanceof UserPlan)) return false;
         UserPlan userPlan = (UserPlan) o;
         return getRecipeId() == userPlan.getRecipeId() &&
-                getFirstExerciseId() == userPlan.getFirstExerciseId() &&
-                getId().equals(userPlan.getId()) &&
-                getFirstRecipeComplete().equals(userPlan.getFirstRecipeComplete()) &&
-                getSecondRecipeComplete().equals(userPlan.getSecondRecipeComplete()) &&
-                getThirdRecipeComplete().equals(userPlan.getThirdRecipeComplete()) &&
-                getFirstExerciseComplete().equals(userPlan.getFirstExerciseComplete()) &&
-                getSecondExerciseComplete().equals(userPlan.getSecondExerciseComplete()) &&
-                getThirdExerciseComplete().equals(userPlan.getThirdExerciseComplete());
+                getFirstRecipeComplete() == userPlan.getFirstRecipeComplete() &&
+                getSecondRecipeComplete() == userPlan.getSecondRecipeComplete() &&
+                getThirdRecipeComplete() == userPlan.getThirdRecipeComplete() &&
+                getExerciseId() == userPlan.getExerciseId() &&
+                getFirstExerciseComplete() == userPlan.getFirstExerciseComplete() &&
+                getSecondExerciseComplete() == userPlan.getSecondExerciseComplete() &&
+                getThirdExerciseComplete() == userPlan.getThirdExerciseComplete() &&
+                getId().equals(userPlan.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRecipeId(), getFirstRecipeComplete(), getSecondRecipeComplete(), getThirdRecipeComplete(), getFirstExerciseId(), getFirstExerciseComplete(), getSecondExerciseComplete(), getThirdExerciseComplete());
+        return Objects.hash(getId(), getRecipeId(), getFirstRecipeComplete(), getSecondRecipeComplete(), getThirdRecipeComplete(), getExerciseId(), getFirstExerciseComplete(), getSecondExerciseComplete(), getThirdExerciseComplete());
     }
 
     @Override
@@ -151,7 +151,7 @@ public class UserPlan {
                 ", FirstRecipeComplete=" + FirstRecipeComplete +
                 ", SecondRecipeComplete=" + SecondRecipeComplete +
                 ", ThirdRecipeComplete=" + ThirdRecipeComplete +
-                ", FirstExerciseId=" + FirstExerciseId +
+                ", FirstExerciseId=" + ExerciseId +
                 ", FirstExerciseComplete=" + FirstExerciseComplete +
                 ", SecondExerciseComplete=" + SecondExerciseComplete +
                 ", ThirdExerciseComplete=" + ThirdExerciseComplete +

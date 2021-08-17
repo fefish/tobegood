@@ -36,7 +36,7 @@ public class HelpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 UserDao userDao = new UserDao(HelpActivity.this);
                 User user = userDao.getUserById(data);
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + user.getEmergencynumber()));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + user.getEmergencyNumber()));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
@@ -116,6 +116,6 @@ public class HelpActivity extends AppCompatActivity {
         TextView Text_help_number = (TextView) findViewById(R.id.Text_help_number);
         UserDao userDao = new UserDao(HelpActivity.this);
         User user = userDao.getUserById(data);
-        Text_help_number.setText(user.getEmergencynumber());
+        Text_help_number.setText(user.getEmergencyNumber());
     }
 }
