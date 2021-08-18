@@ -162,13 +162,13 @@ public class Register extends AppCompatActivity {
     }
 
     private void initialTable() {
-        EatTable eatTable1 = new EatTable(1, "EatTable1Name1", "recipe001",
-                "EatTable1Name1", "EatTable1Name2", "recipe002",
-                "EatTable1Name2", "EatTable1Name3", "recipe003",
+        EatTable eatTable1 = new EatTable(1, "Nut Oatmeal Cups", "recipe001",
+                "Combine the milk, egg and nut. Add some salt, then bake it for 20 minutes.", "Veggie Sandwich", "recipe002",
+                "EatTable1Name2", "Chicken Bowl", "recipe003",
                 "EatTable1Name3");
-        EatTable eatTable2 = new EatTable(2, "EatTable2Name1", "recipe002",
-                "EatTable2Name1", "EatTable2Name2", "recipe002",
-                "EatTable2Name2", "EatTable2Name3", "recipe002",
+        EatTable eatTable2 = new EatTable(2, "Egg", "recipe004",
+                "EatTable2Name1", "Chicken Taco", "recipe005",
+                "EatTable2Name2", "Veggie Burger", "recipe006",
                 "EatTable2Name3");
         EatTable eatTable3 = new EatTable(3, "EatTable3Name1", "recipe003",
                 "EatTable3Name1", "EatTable3Name2", "recipe003",
@@ -340,13 +340,13 @@ public class Register extends AppCompatActivity {
         eatTableDao.add(eatTable34);
         eatTableDao.add(eatTable35);
         // Log.d("222", eatTable222.getRecipeOnePic());
-        ExerciseTable exerciseTable1 = new ExerciseTable(1, "ExerciseTable1Name1", "recipe001",
-                "ExerciseTable1Name1", "ExerciseTable1Name2", "recipe001",
-                "ExerciseTable1Name2", "ExerciseTable1Name3", "recipe001",
+        ExerciseTable exerciseTable1 = new ExerciseTable(1, "Jogging", "exercise004",
+                "Please jogging for 20 minutes", "Yoga", "exercise001",
+                "ExerciseTable1Name2", "HIIT", "exercise006",
                 "ExerciseTable1Name3");
-        ExerciseTable exerciseTable2 = new ExerciseTable(2, "ExerciseTable2Name1", "recipe002",
-                "ExerciseTable2Name1", "ExerciseTable2Name2", "recipe002",
-                "ExerciseTable2Name2", "ExerciseTable2Name3", "recipe002",
+        ExerciseTable exerciseTable2 = new ExerciseTable(2, "Jogging", "exercise004",
+                "ExerciseTable2Name1", "HIIT", "exercise006",
+                "ExerciseTable2Name2", "HIIT", "exercise006",
                 "EatTable2Name3");
         ExerciseTable exerciseTable3 = new ExerciseTable(3, "ExerciseTable3Name1", "recipe003",
                 "ExerciseTable3Name1", "ExerciseTable3Name2", "recipe003",
@@ -544,17 +544,17 @@ public class Register extends AppCompatActivity {
         UserPlanDao userPlanDao = new UserPlanDao(Register.this);
         UserPlan userPlan1 = new UserPlan(user.getId() + "1", 1, false, false, false, 1, false, false, false);
         userPlanDao.add(userPlan1);
-        UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 2, false, false, false, 1, false, false, false);
+        UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 2, false, false, false, 2, false, false, false);
         userPlanDao.add(userPlan2);
-        UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 3, false, false, false, 1, false, false, false);
+        UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 3, false, false, false, 3, false, false, false);
         userPlanDao.add(userPlan3);
-        UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 4, false, false, false, 1, false, false, false);
+        UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 4, false, false, false, 4, false, false, false);
         userPlanDao.add(userPlan4);
-        UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 5, false, false, false, 1, false, false, false);
+        UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 5, false, false, false, 5, false, false, false);
         userPlanDao.add(userPlan5);
-        UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 6, false, false, false, 1, false, false, false);
+        UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 6, false, false, false, 6, false, false, false);
         userPlanDao.add(userPlan6);
-        UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 7, false, false, false, 1, false, false, false);
+        UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 7, false, false, false, 7, false, false, false);
         userPlanDao.add(userPlan7);
         Log.d("rerere", "onClick: " + userPlan1.toString());
     }
@@ -566,7 +566,7 @@ public class Register extends AppCompatActivity {
         EditText edit_register_height = (EditText) findViewById(R.id.Edit_register_height);
         EditText edit_register_weight = (EditText) findViewById(R.id.Edit_register_weight);
         EditText editText_register_contactnumber = (EditText) findViewById(R.id.Edit_register_contactnumber);
-        boolean findempty = TextUtils.isEmpty(edit_register_id.getText()) || TextUtils.isEmpty(edit_register_name.getText()) || TextUtils.isEmpty(edit_register_password.getText()) || TextUtils.isEmpty(edit_register_height.getText()) || TextUtils.isEmpty(edit_register_weight.getText())||TextUtils.isEmpty(editText_register_contactnumber.getText());
+        boolean findempty =( TextUtils.isEmpty(edit_register_id.getText()) || TextUtils.isEmpty(edit_register_name.getText()) || TextUtils.isEmpty(edit_register_password.getText()) || TextUtils.isEmpty(edit_register_height.getText()) || TextUtils.isEmpty(edit_register_weight.getText())||TextUtils.isEmpty(editText_register_contactnumber.getText()));
         return findempty;
     }
 }

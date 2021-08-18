@@ -244,7 +244,7 @@ public class EatActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.setday, menu);
+        getMenuInflater().inflate(R.menu.setdayandremind, menu);
         return true;
     }
 

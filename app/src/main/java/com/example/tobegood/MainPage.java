@@ -1,5 +1,6 @@
 package com.example.tobegood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -9,12 +10,11 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.example.tobegood.bean.EatTable;
 import com.example.tobegood.bean.User;
 import com.example.tobegood.dao.UserDao;
 
@@ -53,12 +53,47 @@ public class MainPage extends AppCompatActivity {
 
         setBottomBar(data);
     }
+
+    private void updateToday(int id, int today) {
+        UserDao userDao = new UserDao(MainPage.this);
+        User user = userDao.getUserById(id);
+        user.setLastDay(today);
+        userDao.update(user);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.setday,menu);
         return true;
     }
-
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent_getfrompre = getIntent();
+        int data = intent_getfrompre.getIntExtra("usee", 0);
+        switch (item.getItemId()) {
+            case R.id.firstday:
+                updateToday(data, 1);
+                break;
+            case R.id.secondday:
+                updateToday(data, 2);
+                break;
+            case R.id.thirdday:
+                updateToday(data, 3);
+                break;
+            case R.id.forthday:
+                updateToday(data, 4);
+                break;
+            case R.id.fifthday:
+                updateToday(data, 5);
+                break;
+            case R.id.sixthday:
+                updateToday(data, 6);
+                break;
+            case R.id.seventhday:
+                updateToday(data, 7);
+                break;
+        }
+        setToolbar(data);
+        return super.onOptionsItemSelected(item);
+    }
     private  void setToolbar(int data){
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,7 +110,7 @@ public class MainPage extends AppCompatActivity {
         UserDao userDao = new UserDao(MainPage.this);
         User user = userDao.getUserById(data);
         toolbar.setTitle("tobegood");
-        toolbar.setSubtitle("Welcome,"+user.getName()+"! This is the main page.");
+        toolbar.setSubtitle("Welcome,"+user.getName()+"! It's main page.");
         toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }

@@ -118,7 +118,7 @@ public class SettingsActivity extends AppCompatActivity {
         UserDao userDao = new UserDao(SettingsActivity.this);
         User user = userDao.getUserById(data);
         toolbar.setTitle("tobegood");
-        toolbar.setSubtitle("Welcome, " + user.getName() + "! You can change your personal details.");
+        toolbar.setSubtitle(user.getName() + ", you can change your details.");
         toolbar.setTitleTextColor(getResources().getColor(R.color.picturebrown));
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.fontblue));
     }

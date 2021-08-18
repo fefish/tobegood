@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_setClock"
+        android:title="set your clock">
+        <menu>
+            <item
+                android:id="@+id/clock1"
+                android:title="Clock One" />
+            <item
+                android:id="@+id/clock2"
+                android:title="Clock Two" />
+            <item
+                android:id="@+id/clock3"
+                android:title="Clock Three" />
+
+        </menu>
+
+    </item>
+    <item
+        android:id="@+id/menu_setDay"
+        android:title="set your day">
+        <menu>
+            <item
+                android:id="@+id/firstday"
+                android:title="first day" />
+            <item
+                android:id="@+id/secondday"
+                android:title="second day" />
+            <item
+                android:id="@+id/thirdday"
+                android:title="third day" />
+            <item
+                android:id="@+id/forthday"
+                android:title="forth day" />
+            <item
+                android:id="@+id/fifthday"
+                android:title="fifth day" />
+            <item
+                android:id="@+id/sixthday"
+                android:title="sitth day" />
+            <item
+                android:id="@+id/seventhday"
+                android:title="seventh day" />
+
+        </menu>
+
+    </item>
+    <!--<item
+        android:id="@+id/firstday"
+        android:orderInCategory="1"
+        android:title="first day"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/secondday"
+        android:orderInCategory="2"
+        android:title="second day"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/thirdday"
+        android:orderInCategory="3"
+        android:title="third day"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/forthday"
+        android:orderInCategory="4"
+        android:title="forth day"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/fifthday"
+        android:orderInCategory="5"
+        android:title="fifth day"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/sixthday"
+        android:orderInCategory="6"
+        android:title="sixth day"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/seventhday"
+        android:orderInCategory="7"
+        android:title="seventh day"
+        app:showAsAction="never"/>-->
+</menu>
