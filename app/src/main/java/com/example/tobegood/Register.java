@@ -21,14 +21,16 @@ import com.example.tobegood.dao.UserDao;
 import com.example.tobegood.dao.*;
 import com.example.tobegood.bean.*;
 import com.example.tobegood.bean.User;
+import com.example.tobegood.bean.UserPlan;
+import com.example.tobegood.dao.UserPlanDao;
 
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
-    private boolean mySex = false;
+    private boolean mySex = true;
     private boolean myVegan = true;
     private boolean myEatDisorder = true;
-    private int myPurpose = 0;
+    private int myPurpose = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,8 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 UserDao userDao = new UserDao(Register.this);
                 User user = getUser();
+                UserPlanDao userPlanDao = new UserPlanDao(Register.this);
+
                 if (findEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill up all the information, thank you.", Toast.LENGTH_SHORT).show();
                 } else if (userDao.getUserById(user.getId()) != null) {
@@ -118,8 +122,9 @@ public class Register extends AppCompatActivity {
                 } else {
                     userDao.add(user);
                     setUserPlan(user.getId());
-                    Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString(),
+                    Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString() + userPlanDao.getUserPlanById(user.getId()+"1"),
                             Toast.LENGTH_SHORT).show();
+                    Log.d("register", "onClick: "+user.toString());
                     initialTable();
                     Intent intent_toMainPage = new Intent(Register.this, MainPage.class);
                     intent_toMainPage.putExtra("usee", user.getId());
@@ -395,7 +400,7 @@ public class Register extends AppCompatActivity {
                         "\n" +
                         "Step 3\n" +
                         "Divide the slaw among 4 single-serving containers with lids. Top each with one-fourth of the chicken and 1/2 tablespoon sesame seeds. Dress with the reserved sauce just before serving.",
-                "Pork Paprikash with Cauliflower \"Rice\"","recipe030",
+                "Pork Paprikash with Cauliflower \"Rice\"", "recipe030",
                 "Step 1\n" +
                         "Trim fat from meat. Cut meat into bite-size pieces; set aside.\n" +
                         "\n" +
@@ -510,7 +515,7 @@ public class Register extends AppCompatActivity {
                         "\n" +
                         "Step 3\n" +
                         "Divide the slaw among 4 single-serving containers with lids. Top each with one-fourth of the chicken and 1/2 tablespoon sesame seeds. Dress with the reserved sauce just before serving.",
-                "Pork Paprikash with Cauliflower \"Rice\"","recipe030",
+                "Pork Paprikash with Cauliflower \"Rice\"", "recipe030",
                 "Step 1\n" +
                         "Trim fat from meat. Cut meat into bite-size pieces; set aside.\n" +
                         "\n" +
@@ -683,7 +688,7 @@ public class Register extends AppCompatActivity {
                         "Transfer the pan to the oven. Broil until an instant-read thermometer inserted in the center of a chop registers 145 degrees F, 6 to 8 minutes. Serve the pork with the greens and corn.");
         EatTable eatTable22 = new EatTable(22, "Breakfast set", "recipe064",
                 "3/4 cup oatmeal cooked in 1 1/2 cup water\n" +
-                        "1/3 cup raspberries\n"+
+                        "1/3 cup raspberries\n" +
                         "1 medium apple",
                 "Whole-Wheat Veggie Wrap", "recipe065",
                 "Lay tortilla on work surface. Spread hummus and avocado on the tortilla. Add veggies and Cheddar and roll up. Cut in half before serving.",
@@ -762,7 +767,7 @@ public class Register extends AppCompatActivity {
                         "Transfer half of the mixture (about 5 cups) to a 1 1/2-qt. freezer container; label and freeze for up to 1 month. Serve the remaining half at once, or refrigerate for up to 3 days.");
         EatTable eatTable26 = new EatTable(22, "Breakfast set", "recipe064",
                 "3/4 cup oatmeal cooked in 1 1/2 cup water\n" +
-                        "1/3 cup raspberries\n"+
+                        "1/3 cup raspberries\n" +
                         "1 medium apple",
                 "Whole-Wheat Veggie Wrap", "recipe065",
                 "Lay tortilla on work surface. Spread hummus and avocado on the tortilla. Add veggies and Cheddar and roll up. Cut in half before serving.",
@@ -1259,7 +1264,7 @@ public class Register extends AppCompatActivity {
         User user = userDao.getUserById(id);
         /*set userplan*/
         UserPlanDao userPlanDao = new UserPlanDao(Register.this);
-        if( (user.getPurpose() == 1)&&(user.isVegan()==false)&&(user.isEatdisorder()==false)) {
+        if ((user.getPurpose() == 1) && (user.isVegan() == false) && (user.isEatdisorder() == false)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 1, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 2, false, false, false, 2, false, false, false);
@@ -1275,7 +1280,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 7, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if ( (user.getPurpose() == 3)&&(user.isVegan()==false)&&(user.isEatdisorder()==false)) {
+        if ((user.getPurpose() == 3) && (user.isVegan() == false) && (user.isEatdisorder() == false)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 8, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 9, false, false, false, 5, false, false, false);
@@ -1291,7 +1296,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 14, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if ( (user.getPurpose() == 2)&&(user.isVegan()==false)&&(user.isEatdisorder()==false)) {
+        if ((user.getPurpose() == 2) && (user.isVegan() == false) && (user.isEatdisorder() == false)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 15, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 16, false, false, false, 2, false, false, false);
@@ -1307,39 +1312,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 21, false, false, false, 3, false, false, false);
             userPlanDao.add(userPlan7);
         }
-/*        if ((user.isVegan()==true)) {
-            UserPlan userPlan1 = new UserPlan(user.getId() + "1", 22, false, false, false, 1, false, false, false);
-            userPlanDao.add(userPlan1);
-            UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 23, false, false, false, 2, false, false, false);
-            userPlanDao.add(userPlan2);
-            UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 24, false, false, false, 3, false, false, false);
-            userPlanDao.add(userPlan3);
-            UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 25, false, false, false, 4, false, false, false);
-            userPlanDao.add(userPlan4);
-            UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 26, false, false, false, 5, false, false, false);
-            userPlanDao.add(userPlan5);
-            UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 27, false, false, false, 6, false, false, false);
-            userPlanDao.add(userPlan6);
-            UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 28, false, false, false, 7, false, false, false);
-            userPlanDao.add(userPlan7);
-        }
-        if ((user.isEatdisorder()==true)&&(user.isVegan()==false)) {
-            UserPlan userPlan1 = new UserPlan(user.getId() + "1", 29, false, false, false, 1, false, false, false);
-            userPlanDao.add(userPlan1);
-            UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 30, false, false, false, 2, false, false, false);
-            userPlanDao.add(userPlan2);
-            UserPlan userPlan3 = new UserPlan(user.getId() + "" + "3", 31, false, false, false, 3, false, false, false);
-            userPlanDao.add(userPlan3);
-            UserPlan userPlan4 = new UserPlan(user.getId() + "" + "4", 32, false, false, false, 4, false, false, false);
-            userPlanDao.add(userPlan4);
-            UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 33, false, false, false, 5, false, false, false);
-            userPlanDao.add(userPlan5);
-            UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 34, false, false, false, 6, false, false, false);
-            userPlanDao.add(userPlan6);
-            UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 35, false, false, false, 7, false, false, false);
-            userPlanDao.add(userPlan7);
-        }*/
-        if( (user.getPurpose() == 1)&&(user.isVegan()==true)) {
+        if ((user.getPurpose() == 1) && (user.isVegan() == true)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 22, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 23, false, false, false, 2, false, false, false);
@@ -1355,7 +1328,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 28, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if ( (user.getPurpose() == 3)&&(user.isVegan()==true)) {
+        if ((user.getPurpose() == 3) && (user.isVegan() == true)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 22, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 23, false, false, false, 5, false, false, false);
@@ -1371,7 +1344,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 28, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if ( (user.getPurpose() == 2)&&(user.isVegan()==true)) {
+        if ((user.getPurpose() == 2) && (user.isVegan() == true)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 22, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 23, false, false, false, 2, false, false, false);
@@ -1382,12 +1355,12 @@ public class Register extends AppCompatActivity {
             userPlanDao.add(userPlan4);
             UserPlan userPlan5 = new UserPlan(user.getId() + "" + "5", 26, false, false, false, 5, false, false, false);
             userPlanDao.add(userPlan5);
-            UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 27, false, false, false,1 , false, false, false);
+            UserPlan userPlan6 = new UserPlan(user.getId() + "" + "6", 27, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan6);
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 28, false, false, false, 2, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if( (user.getPurpose() == 1)&&(user.isEatdisorder()==true)&&(user.isVegan()==false)) {
+        if ((user.getPurpose() == 1) && (user.isEatdisorder() == true) && (user.isVegan() == false)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 29, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 30, false, false, false, 2, false, false, false);
@@ -1403,7 +1376,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 35, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if ( (user.getPurpose() == 3)&&(user.isEatdisorder()==true)&&(user.isVegan()==false)) {
+        if ((user.getPurpose() == 3) && (user.isEatdisorder() == true) && (user.isVegan() == false)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 29, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 30, false, false, false, 5, false, false, false);
@@ -1419,7 +1392,7 @@ public class Register extends AppCompatActivity {
             UserPlan userPlan7 = new UserPlan(user.getId() + "" + "7", 35, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan7);
         }
-        if ( (user.getPurpose() == 2)&&(user.isEatdisorder()==true)&&(user.isVegan()==false)) {
+        if ((user.getPurpose() == 2) && (user.isEatdisorder() == true) && (user.isVegan() == false)) {
             UserPlan userPlan1 = new UserPlan(user.getId() + "1", 29, false, false, false, 1, false, false, false);
             userPlanDao.add(userPlan1);
             UserPlan userPlan2 = new UserPlan(user.getId() + "" + "2", 30, false, false, false, 2, false, false, false);

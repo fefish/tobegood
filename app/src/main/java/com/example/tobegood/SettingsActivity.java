@@ -242,7 +242,7 @@ public class SettingsActivity extends AppCompatActivity {
         bottom_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toeatpage = new Intent(SettingsActivity.this, SettingsActivity.class);
+                Intent intent_toeatpage = new Intent(SettingsActivity.this, HelpActivity.class);
                 intent_toeatpage.putExtra("usee", data);
                 startActivity(intent_toeatpage);
             }
@@ -250,7 +250,7 @@ public class SettingsActivity extends AppCompatActivity {
         bottom_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toexercisepage = new Intent(SettingsActivity.this, HelpActivity.class);
+                Intent intent_toexercisepage = new Intent(SettingsActivity.this, SettingsActivity.class);
                 intent_toexercisepage.putExtra("usee", data);
                 startActivity(intent_toexercisepage);
             }

@@ -183,8 +183,9 @@ public class User {
                 ", height=" + height +
                 ", weight=" + weight +
                 ", eatdisorder=" + eatdisorder +
-                ", lastday=" + lastDay +
-                ", emergencynumber='" + emergencyNumber + '\'' +
+                ", lastDay=" + lastDay +
+                ", emergencyNumber='" + emergencyNumber + '\'' +
+                ", purpose=" + purpose +
                 '}';
     }
 }

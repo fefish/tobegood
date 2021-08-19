@@ -318,7 +318,7 @@ public class EatActivity extends AppCompatActivity {
         bottom_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toeatpage = new Intent(EatActivity.this, SettingsActivity.class);
+                Intent intent_toeatpage = new Intent(EatActivity.this, HelpActivity.class);
                 intent_toeatpage.putExtra("usee", data);
                 startActivity(intent_toeatpage);
             }
@@ -326,7 +326,7 @@ public class EatActivity extends AppCompatActivity {
         bottom_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_toexercisepage = new Intent(EatActivity.this, HelpActivity.class);
+                Intent intent_toexercisepage = new Intent(EatActivity.this, SettingsActivity.class);
                 intent_toexercisepage.putExtra("usee", data);
                 startActivity(intent_toexercisepage);
             }
