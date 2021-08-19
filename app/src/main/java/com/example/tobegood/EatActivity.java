@@ -75,19 +75,19 @@ public class EatActivity extends AppCompatActivity {
         Button_eat_recipe1_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detailDialog(eatTable, 1);
+                detailDialog(data, 1);
             }
         });
         Button_eat_recipe2_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detailDialog(eatTable, 2);
+                detailDialog(data, 2);
             }
         });
         Button_eat_recipe3_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detailDialog(eatTable, 3);
+                detailDialog(data, 3);
             }
         });
         Button_eat_recipe1_complete.setOnClickListener(new View.OnClickListener() {
@@ -217,8 +217,14 @@ public class EatActivity extends AppCompatActivity {
         setImageAndText(id);
     }
 
-    private void detailDialog(EatTable eatTable, int recipenum) {
+    private void detailDialog(int data, int recipenum) {
         AlertDialog dialog = new AlertDialog.Builder(this).create();
+        UserDao userDao = new UserDao(EatActivity.this);
+        User user = userDao.getUserById(data);
+        UserPlanDao userPlanDao = new UserPlanDao(EatActivity.this);
+        UserPlan userPlan = userPlanDao.getUserPlanById(data + "" + user.getLastDay());
+        EatTableDao eatTableDao = new EatTableDao(EatActivity.this);
+        EatTable eatTable = eatTableDao.getEatTableById(userPlan.getRecipeId());
         dialog.setTitle("This is the details about your recipe:");
         switch (recipenum) {
             case 1:

@@ -26,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
     private boolean mySex;
     private boolean myVegan;
     private boolean myEatDisorder;
-
+    private int myPurpose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,23 @@ public class SettingsActivity extends AppCompatActivity {
         RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        RadioGroup radioGroup_register_pupose = (RadioGroup) findViewById(R.id.RadioGroup_register_purpose);
+        radioGroup_register_pupose.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId) {
+                    case R.id.Radiobutton_register_purpose1:
+                        myPurpose = 1;
+                        break;
+                    case R.id.Radiobutton_register_purpose2:
+                        myPurpose = 2;
+                        break;
+                    case R.id.Radiobutton_register_purpose3:
+                        myPurpose = 3;
+                        break;
+                }
+            }
+        });
         radioGroup_register_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkId) {
@@ -135,6 +152,7 @@ public class SettingsActivity extends AppCompatActivity {
         RadioGroup radioGroup_register_sex = (RadioGroup) findViewById(R.id.RadioGroup_register_sex);
         RadioGroup radioGroup_register_vegan = (RadioGroup) findViewById(R.id.RadioGroup_register_vegan);
         RadioGroup radioGroup_register_eatdisorder = (RadioGroup) findViewById(R.id.RadioGroup_register_eatdisorder);
+        RadioGroup radioGroup_register_purpose = (RadioGroup) findViewById(R.id.RadioGroup_register_purpose);
         edit_register_id.setText(user.getId() + "");
         edit_register_password.setText(user.getPassword());
         edit_register_name.setText(user.getName());
@@ -155,6 +173,13 @@ public class SettingsActivity extends AppCompatActivity {
             radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_eatdisorder);
         } else {
             radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_noeatdisorder);
+        }
+        if (user.getPurpose()==1) {
+            radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_purpose1);
+        } else if(user.getPurpose()==2) {
+            radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_purpose2);
+        }else if(user.getPurpose()==3){
+            radioGroup_register_eatdisorder.check(R.id.Radiobutton_register_purpose2);
         }
     }
 

@@ -65,17 +65,16 @@ public class ExerciseActivity extends AppCompatActivity {
         Button_exercise_exercise1_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detailDialog(exerciseTable,1);
+                detailDialog(data,1);
             }});
         Button_exercise_exercise2_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                detailDialog(exerciseTable,2);
+                detailDialog(data,2);
             }});
         Button_exercise_exercise3_detail.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                detailDialog(exerciseTable,3);
+            public void onClick(View v) {                detailDialog(data,3);
             }});
         Button_exercise_exercise1_complete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,8 +267,13 @@ public class ExerciseActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-    private void detailDialog(ExerciseTable exerciseTable,int recipenum){
-
+    private void detailDialog(int data,int recipenum){
+        UserDao userDao = new UserDao(ExerciseActivity.this);
+        User user = userDao.getUserById(data);
+        UserPlanDao userPlanDao = new UserPlanDao(ExerciseActivity.this);
+        UserPlan userPlan = userPlanDao.getUserPlanById(data+""+user.getLastDay());
+        ExerciseTableDao exerciseTableDao = new ExerciseTableDao(ExerciseActivity.this);
+        ExerciseTable exerciseTable = exerciseTableDao.getExerciseTableById(userPlan.getRecipeId());
         AlertDialog dialog = new AlertDialog.Builder (this).create ();
         dialog.setTitle ("This is the details about your recipe:");
         switch (recipenum) {
