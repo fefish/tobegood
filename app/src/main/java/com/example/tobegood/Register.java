@@ -122,7 +122,7 @@ public class Register extends AppCompatActivity {
                 } else {
                     userDao.add(user);
                     setUserPlan(user.getId());
-                    Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString() + userPlanDao.getUserPlanById(user.getId()+"1"),
+                    Toast.makeText(getApplicationContext(), "register successful! Your information is" + user.toString(),
                             Toast.LENGTH_SHORT).show();
                     Log.d("register", "onClick: "+user.toString());
                     initialTable();
